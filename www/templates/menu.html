@@ -1,0 +1,49 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-positive">
+      <ion-nav-back-button class="button-clear">
+        <i class="ion-chevron-left"></i>返回
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent">
+    </ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-content overflow-scroll="false">
+      <ion-list>
+        <ion-item menu-close ui-sref="app.user">
+          <img src="../img/user.jpg" style="width: 50%;border-radius: 50%;margin-left:30%;">
+        </ion-item>
+        <ion-item menu-close ui-sref="app.first">
+          用户首页
+        </ion-item>
+        <ion-item menu-close ui-sref="app.pay">
+          收支管理
+        </ion-item>
+        <ion-item menu-close ui-sref="app.assets">
+          资产管理
+        </ion-item>
+        <ion-item menu-close ui-sref="app.bond">
+          债券管理
+        </ion-item>
+        <ion-item menu-close ui-sref="app.share">
+          股票管理
+        </ion-item>
+        <ion-item menu-close ui-sref="app.borrow">
+          借贷管理
+        </ion-item>
+        <ion-item menu-close ui-sref="app.wishlist">
+          心愿单
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
+

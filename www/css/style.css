@@ -1,0 +1,6 @@
+/* Empty. Add your own CSS if you like */
+.center {text-align: center;}
+.record .item {color:#444444;}
+.record .item h1 {color: #000000;}
+.record .item .item-value {float: right;}
+.record .item textarea {background-color: #fff;padding: 16px 8px 6px 4px;font-size: inherit;color: inherit;}
