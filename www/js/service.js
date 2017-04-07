@@ -1,4 +1,49 @@
 angular.module("service", [])
+	.factory('LoginSer',['$http','$q','baseUrl',function($http,$q,baseUrl) {
+		var factory = {};
+
+		// 登录
+		factory.signin = function(user) {
+			var deferred = $q.defer();
+
+			$http.post(baseUrl + "user/signin", {
+				name: user.name,
+				password:user.password
+			}).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		// 注册
+		factory.signup = function(user) {
+			var deferred = $q.defer();
+			$http.post(baseUrl + "user/signup", {
+				user: user
+			}).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+		factory.forgetpwd = function(user) {
+			var deferred = $q.defer();
+			$http.post(baseUrl + "user/forgetpwd", {
+				user: user
+			}).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		return factory;
+
+	}])
 	.factory('PaySer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
 		var factory = {};
 
@@ -13,7 +58,7 @@ angular.module("service", [])
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
-				deferred.reject(error);
+				deferred.reject(err);
 			});
 			return deferred.promise;
 		}
@@ -24,7 +69,7 @@ angular.module("service", [])
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
-				deferred.reject(error);
+				deferred.reject(err);
 			});
 			return deferred.promise;
 		}
@@ -35,7 +80,7 @@ angular.module("service", [])
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
-				deferred.reject(error);
+				deferred.reject(err);
 			});
 			return deferred.promise;
 		}

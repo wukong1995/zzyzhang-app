@@ -1,4 +1,4 @@
-<ion-view view-title="收支列表">
+<ion-view view-title="心愿单">
 
   <ion-nav-buttons side="right">
         <a class="button button-clear button-icon ion-plus-round" ui-sref="app.pay.add"></a>
@@ -24,6 +24,14 @@
         <ion-option-button class="button-calm"
                            ng-click="onItemDelete(item)">
           删除
+        </ion-option-button>
+        <ion-option-button class="button-assertive"
+                           ng-click="edit(item.id)">
+          编辑
+        </ion-option-button>
+        <ion-option-button class="button-balanced"
+                           ng-click="buy(item.id)">
+          购买
         </ion-option-button>
         <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
       </ion-item>

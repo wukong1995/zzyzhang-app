@@ -44,6 +44,33 @@ angular.module('configRouter', [])
 					}
 				}
 			})
+			.state('app.user.detail', {
+				url: '/detail',
+				views: {
+					'menuContent': {
+						templateUrl: 'templates/account/detail.html',
+						controller: 'UserDetailCtrl'
+					}
+				}
+			})
+			.state('app.user.change', {
+				url: '/change',
+				views: {
+					'menuContent': {
+						templateUrl: 'templates/account/change.html',
+						controller: 'UserChangeCtrl'
+					}
+				}
+			})
+			.state('app.user.changepwd', {
+				url: '/change',
+				views: {
+					'menuContent': {
+						templateUrl: 'templates/account/changepwd.html',
+						controller: 'UserChangepwdCtrl'
+					}
+				}
+			})
 			.state('app.pay', {
 				url: '/pay',
 				views: {
@@ -68,15 +95,6 @@ angular.module('configRouter', [])
 					'menuContent@app': {
 						templateUrl: 'templates/payment/add.html',
 						controller: 'PayAddCtrl'
-					}
-				}
-			})
-			.state('app.pay.edit', {
-				url: '/edit/:id',
-				views: {
-					'menuContent@app': {
-						templateUrl: 'templates/payment/add.html',
-						controller: 'PayEditCtrl'
 					}
 				}
 			})
@@ -107,12 +125,129 @@ angular.module('configRouter', [])
 					}
 				}
 			})
-			.state('app.share.edit', {
+			.state('app.assets', {
+				url: '/assets',
+				views: {
+					'menuContent': {
+						templateUrl: 'templates/assets/list.html',
+						controller: 'AssetsCtrl'
+					}
+				}
+			})
+			.state('app.assets.detail', {
+				url: '/detail/:id',
+				views: {
+					'menuContent@app': {
+						templateUrl: 'templates/assets/detail.html',
+						controller: 'AssetsDetailCtrl'
+					}
+				}
+			})
+			.state('app.assets.add', {
+				url: '/add',
+				views: {
+					'menuContent@app': {
+						templateUrl: 'templates/assets/add.html',
+						controller: 'AssetsAddCtrl'
+					}
+				}
+			})
+			.state('app.assets.edit', {
 				url: '/edit/:id',
 				views: {
 					'menuContent@app': {
-						templateUrl: 'templates/share/add.html',
-						controller: 'ShareEditCtrl'
+						templateUrl: 'templates/assets/add.html',
+						controller: 'AssetsEditCtrl'
+					}
+				}
+			})
+			.state('app.bond', {
+				url: '/bond',
+				views: {
+					'menuContent': {
+						templateUrl: 'templates/bond/list.html',
+						controller: 'BondCtrl'
+					}
+				}
+			})
+			.state('app.bond.detail', {
+				url: '/detail/:id',
+				views: {
+					'menuContent@app': {
+						templateUrl: 'templates/bond/detail.html',
+						controller: 'BondDetailCtrl'
+					}
+				}
+			})
+			.state('app.bond.add', {
+				url: '/add',
+				views: {
+					'menuContent@app': {
+						templateUrl: 'templates/bond/add.html',
+						controller: 'BondAddCtrl'
+					}
+				}
+			})
+			.state('app.borrow', {
+				url: '/borrow',
+				views: {
+					'menuContent': {
+						templateUrl: 'templates/borrow/list.html',
+						controller: 'BorrowCtrl'
+					}
+				}
+			})
+			.state('app.borrow.detail', {
+				url: '/detail/:id',
+				views: {
+					'menuContent@app': {
+						templateUrl: 'templates/borrow/detail.html',
+						controller: 'BorrowDetailCtrl'
+					}
+				}
+			})
+			.state('app.borrow.add', {
+				url: '/add',
+				views: {
+					'menuContent@app': {
+						templateUrl: 'templates/borrow/add.html',
+						controller: 'BonrrowAddCtrl'
+					}
+				}
+			})
+			.state('app.wish', {
+				url: '/wish',
+				views: {
+					'menuContent': {
+						templateUrl: 'templates/wish/list.html',
+						controller: 'WishCtrl'
+					}
+				}
+			})
+			.state('app.wish.detail', {
+				url: '/detail/:id',
+				views: {
+					'menuContent@app': {
+						templateUrl: 'templates/wish/detail.html',
+						controller: 'WishDetailCtrl'
+					}
+				}
+			})
+			.state('app.wish.add', {
+				url: '/add',
+				views: {
+					'menuContent@app': {
+						templateUrl: 'templates/wish/add.html',
+						controller: 'WishAddCtrl'
+					}
+				}
+			})
+			.state('app.wish.edit', {
+				url: '/edit/:id',
+				views: {
+					'menuContent@app': {
+						templateUrl: 'templates/wish/add.html',
+						controller: 'WishEditCtrl'
 					}
 				}
 			});

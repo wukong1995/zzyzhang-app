@@ -1,5 +1,38 @@
-<ion-view view-title="Search">
-  <ion-content>
-    <h1>在资产列表</h1>
+<ion-view view-title="资产列表">
+
+  <ion-nav-buttons side="right">
+        <a class="button button-clear button-icon ion-plus-round" ui-sref="app.pay.add"></a>
+    </ion-nav-buttons>
+
+  <ion-content overflow-scroll="false">
+    <div class="bar bar-header item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" name="search" ng-model="keyword" ng-change="search(keyword)">
+      </label>
+    </div>
+
+    <ion-list>
+<!-- 			<ion-item class="item-divider">
+		    2017-01-12
+		    <span class="item-note">3,555</span>
+		  </ion-item> -->
+      <ion-item ng-repeat="item in items" 
+                item="item"
+                ui-sref="app.pay.detail({id:item._id})" class="item-remove-animate">
+        {{ item.name }}
+        <ion-option-button class="button-calm"
+                           ng-click="onItemDelete(item)">
+          删除
+        </ion-option-button>
+        <ion-option-button class="button-assertive"
+                           ng-click="edit(item.id)">
+          编辑
+        </ion-option-button>
+        <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll  on-infinite="loadData()"  ng-if="moredata"></ion-infinite-scroll>
   </ion-content>
 </ion-view>
