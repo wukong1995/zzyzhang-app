@@ -1,5 +1,5 @@
 angular.module('starter.controllers', [])
-  .controller('LoginCtrl', ['$scope', '$location', '$timeout','$ionicLoading','$ionicPopup','LoginSer',
+  .controller('SigninCtrl', ['$scope', '$location', '$timeout','$ionicLoading','$ionicPopup','LoginSer',
    function($scope, $location, $timeout,$ionicLoading,$ionicPopup,LoginSer) {
     if (localStorage.getItem('userid')) {
       $location.path('/app/first');
@@ -39,6 +39,100 @@ angular.module('starter.controllers', [])
         });
         $timeout(function() {
           myPopup.close(); //由于某种原因3秒后关闭弹出
+        }, 3000);
+      });
+    };
+  }])
+  .controller('SignupCtrl', ['$scope', '$location', '$timeout', '$ionicLoading','$ionicPopup','LoginSer',
+    function($scope, $location, $timeout,$ionicLoading,$ionicPopup,LoginSer) {
+    
+    $scope.doSignup = function() {
+
+      if($scope.user.password != $scope.user.confirpwd) {
+        var myPopup = $ionicPopup.show({
+          title: '两次输入密码不一致',
+          buttons: null
+        });
+        $timeout(function() {
+          myPopup.close(); 
+        }, 3000);
+        return ;
+      }
+
+      $ionicLoading.show({
+        template: '正在注册'
+      });
+      LoginSer.signup($scope.user).then(function(res) {
+        $ionicLoading.hide();
+        if(res.success == 0) {
+            $ionicLoading.hide();
+            var myPopup = $ionicPopup.show({
+              title: res.message,
+              buttons: null
+            });
+            $timeout(function() {
+              myPopup.close(); 
+            }, 3000);
+        } else {
+          var myPopup = $ionicPopup.show({
+              title: res.message,
+              buttons: null
+            });
+           $timeout(function() {
+              myPopup.close(); 
+            }, 3000);
+
+          $location.path('/signin');
+        }
+      }, function(err) {
+        $ionicLoading.hide();
+        var myPopup = $ionicPopup.show({
+          title: '请求错误！',
+          buttons: null
+        });
+        $timeout(function() {
+          myPopup.close(); 
+        }, 3000);
+      });
+    };
+  }])
+  .controller('ForgetpwdCtrl',['$scope', '$location', '$timeout', '$ionicLoading','$ionicPopup','LoginSer',
+    function($scope, $location, $timeout,$ionicLoading,$ionicPopup,LoginSer) {
+    $scope.doForgetpwd = function() {
+      
+      $ionicLoading.show({
+        template: '正在重置'
+      });
+      LoginSer.forgetpwd($scope.user).then(function(res) {
+        $ionicLoading.hide();
+        if(res.success == 0) {
+            $ionicLoading.hide();
+            var myPopup = $ionicPopup.show({
+              title: res.message,
+              buttons: null
+            });
+            $timeout(function() {
+              myPopup.close(); 
+            }, 2000);
+        } else {
+          $ionicLoading.hide();
+            var myPopup = $ionicPopup.show({
+              title: '密码已重置为123456，请及时修改密码!',
+              buttons: null
+            });
+            $timeout(function() {
+              myPopup.close(); 
+            }, 2000);
+          $location.path('/signin');
+        }
+      }, function(err) {
+        $ionicLoading.hide();
+        var myPopup = $ionicPopup.show({
+          title: '请求错误！',
+          buttons: null
+        });
+        $timeout(function() {
+          myPopup.close(); 
         }, 3000);
       });
     };

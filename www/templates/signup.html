@@ -1,0 +1,50 @@
+<ion-view view-title="用户注册">
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">用户注册</h1>
+  </ion-header-bar>
+
+  <ion-content scroll="true" overflow-scroll="false" ng-controller="SignupCtrl">
+    <form ng-submit="doSignup()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">用户名</span>
+          <input type="text" name="username" 
+          ng-model="user.name" ng-required="true" ng-minlength="4" ng-maxinlength="16">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">邮箱</span>
+          <input type="email" name="email" 
+          ng-model="user.email" ng-required="true">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">电话</span>
+          <input type="text" name="telphone" 
+          ng-model="user.telphone" ng-required="true" ng-pattern="/^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/"> 
+        </label>
+        <label class="item item-input">
+          <span class="input-label">密码</span>
+          <input type="password" name="password" 
+          ng-model="user.password" ng-required="true" ng-pattern="/[a-zA-Z0-9]{6,16}/">
+        </label>
+         <label class="item item-input">
+          <span class="input-label">确认密码</span>
+          <input type="password" name="password2" 
+          ng-model="user.confirpwd" ng-required="true" ng-pattern="/[a-zA-Z0-9]{6,16}/">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">注册</button>
+        </label>
+      </div>
+    </form>
+
+    <div class="row">
+      <div class="col">
+        <a class="button button-clear button-dark" ui-sref="signin">
+        用户登录</a>
+      </div>
+      <div class="col">
+        <a class="button button-clear button-positive" style="float: right;" ui-sref="forgetpwd">忘记密码?</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

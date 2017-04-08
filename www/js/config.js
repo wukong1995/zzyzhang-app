@@ -16,10 +16,19 @@ angular.module('configRouter', [])
 		$ionicConfigProvider.platform.android.views.transition('android');
 
 		$stateProvider
-			.state('login', {
-				url: '/',
-				templateUrl: 'templates/login.html',
-				controller: 'LoginCtrl'
+			.state('signin', {
+				url: '/signin',
+				templateUrl: 'templates/signin.html'
+			})
+			.state('signup', {
+				url: '/signup',
+				templateUrl: 'templates/signup.html',
+				controller: 'SignupCtrl'
+			})
+			.state('forgetpwd', {
+				url: '/forgetpwd',
+				templateUrl: 'templates/forgetpwd.html',
+				controller: 'ForgetpwdCtrl'
 			})
 			.state('app', {
 				url: '/app',
@@ -252,5 +261,5 @@ angular.module('configRouter', [])
 				}
 			});
 		// if none of the above states are matched, use this as the fallback
-		$urlRouterProvider.otherwise('/');
+		$urlRouterProvider.otherwise('/signin');
 	});

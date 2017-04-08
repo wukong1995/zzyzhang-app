@@ -21,7 +21,10 @@ angular.module("service", [])
 		factory.signup = function(user) {
 			var deferred = $q.defer();
 			$http.post(baseUrl + "user/signup", {
-				user: user
+				name:user.name,
+				email:user.email,
+				telphone:user.telphone,
+				password:user.password
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -29,10 +32,14 @@ angular.module("service", [])
 			});
 			return deferred.promise;
 		}
+
+		// 忘记密码
 		factory.forgetpwd = function(user) {
 			var deferred = $q.defer();
 			$http.post(baseUrl + "user/forgetpwd", {
-				user: user
+				name:user.name,
+				email:user.email,
+				telphone:user.telphone
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -98,4 +105,53 @@ angular.module("service", [])
 			}
 		};
 		return sessionInjector;
+	}])
+	.factory('UserSer',['$http','$q','baseUrl',function($http,$q,baseUrl) {
+		var factory = {};
+
+		// 用户详情页面
+		factory.detail = function(user) {
+			var deferred = $q.defer();
+
+			$http.get(baseUrl + "user/detailmo").success(function(data) {
+				deferred.resolve(data);
+			}).error(function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		// 修改个人资料
+		factory.changepro = function(user) {
+			var deferred = $q.defer();
+			$http.post(baseUrl + "user/changepromo", {
+				name:user.name,
+				email:user.email,
+				telphone:user.telphone,
+				password:user.password
+			}).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		// 修改密码
+		factory.detail = function(user) {
+			var deferred = $q.defer();
+
+			$http.post(baseUrl + "user/changepwd",{
+				pwd:user.pwd,
+				newpwd:user.newpwd
+			}).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+
+		return factory;
+
 	}]);
