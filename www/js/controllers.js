@@ -31,8 +31,8 @@ angular.module('starter.controllers', [])
       });
     };
   }])
-  .controller('SignupCtrl', ['$scope', '$location', '$timeout', '$ionicLoading','$ionicPopup','LoginSer',
-    function($scope, $location, $timeout,$ionicLoading,$ionicPopup,LoginSer) {
+  .controller('SignupCtrl', ['$scope', '$location', '$timeout', '$ionicLoading','PopupSer','LoginSer',
+    function($scope, $location, $timeout,$ionicLoading,PopupSer,LoginSer) {
     
     $scope.doSignup = function() {
 
@@ -59,8 +59,8 @@ angular.module('starter.controllers', [])
       });
     };
   }])
-  .controller('ForgetpwdCtrl',['$scope', '$location', '$timeout', '$ionicLoading','$ionicPopup','LoginSer',
-    function($scope, $location, $timeout,$ionicLoading,$ionicPopup,LoginSer) {
+  .controller('ForgetpwdCtrl',['$scope', '$location', '$timeout', '$ionicLoading','PopupSer','LoginSer',
+    function($scope, $location, $timeout,$ionicLoading,PopupSer,LoginSer) {
     $scope.doForgetpwd = function() {
       
       $ionicLoading.show({
@@ -479,7 +479,6 @@ angular.module('starter.controllers', [])
       } else {
         $scope.user = res.user;
       }
-
     }, function(err) {
       PopupSer.alertErr(err);
     });
@@ -533,16 +532,31 @@ angular.module('starter.controllers', [])
     };
 
   }])
-  .controller('UserChangepwdCtrl', ['$scope', '$ionicActionSheet', '$location', function($scope, $ionicActionSheet, $location) {
-    // 点击按钮触发，或一些其他的触发条件
-    $scope.show = function() {
-      $ionicActionSheet.show({
-        destructiveText: '确定',
-        cancelText: '取消',
-        destructiveButtonClicked: function() {
-          $location.path('/');
-          return true;
-        }
+  .controller('UserChangepwdCtrl', ['$scope', '$ionicLoading', '$location','UserSer','PopupSer',
+   function($scope, $ionicLoading, $location,UserSer,PopupSer) {
+   
+    $scope.doChange = function() {
+
+      if($scope.user.newpwd != $scope.user.confirpwd) {
+        PopupSer.show('两次输入密码不一致');
+        return ;
+      }
+      $ionicLoading.show({
+        template: '正在修改'
       });
-    }
+      UserSer.changepwd($scope.user).then(function(res) {
+        $ionicLoading.hide();
+        if(res.success == 0) {
+          $ionicLoading.hide();
+          PopupSer.show(res.message);
+        } else {
+          PopupSer.show(res.message);
+          localStorage.removeItem('userid');
+          $location.path('/signin');
+        }
+      }, function(err) {
+        $ionicLoading.hide();
+        PopupSer.alertErr(err);
+      });
+    };
   }]);

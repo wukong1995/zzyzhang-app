@@ -1,5 +1,33 @@
-<ion-view view-title="Search">
-  <ion-content>
-    <h1>用户修改密码</h1>
+<ion-view view-title="修改密码">
+	<ion-header-bar class="bar-positive">
+    <h1 class="title">修改密码</h1>
+  </ion-header-bar>
+
+  <ion-content scroll="true" overflow-scroll="false" ng-controller="UserChangepwdCtrl">
+  	
+		<div style="padding: 0 5px;">
+	    <ion-list class="changepwd">
+	    	<form  ng-submit="doChange()">
+		    	<label class="item item-input">
+	          <span class="input-label">原密码</span>
+	          <input type="password" name="password" 
+	          ng-model="user.pwd" ng-required="true" ng-pattern="/[a-zA-Z0-9]{6,16}/">
+	        </label>
+		    	<label class="item item-input">
+	          <span class="input-label">新密码</span>
+	          <input type="password" name="password" 
+	          ng-model="user.newpwd" ng-required="true" ng-pattern="/[a-zA-Z0-9]{6,16}/">
+	        </label>
+	        <label class="item item-input">
+	          <span class="input-label">确认密码</span>
+	          <input type="password" name="password2" 
+	          ng-model="user.confirpwd" ng-required="true" ng-pattern="/[a-zA-Z0-9]{6,16}/">
+	        </label>
+	        <label class="item">
+	          <button class="button button-block button-positive" type="submit">确定</button>
+	        </label>
+        </form>
+      </ion-list>
+    </div>
   </ion-content>
 </ion-view>

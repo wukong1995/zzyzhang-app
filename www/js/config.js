@@ -70,7 +70,7 @@ angular.module('configRouter', [])
 				}
 			})
 			.state('app.user.changepwd', {
-				url: '/change',
+				url: '/changepwd',
 				views: {
 					'menuContent@app': {
 						templateUrl: 'templates/account/changepwd.html',
