@@ -1,30 +1,9 @@
 <ion-view view-title="个人中心">
-  <ion-content>
+  <ion-content scroll="true" overflow-scroll="false" ng-controller="UserCtrl">
   	<ion-list>
-  		<ion-item class="item-icon-left" href="#">
-  			 <i class="icon ion-email"></i>
-			 		Check mail
-  		</ion-item>
-
-  		<ion-item class="item-icon-left item-icon-right" href="#">
-  			<i class="icon ion-chatbubble-working"></i>
-		    Call Ma
-		    <i class="icon ion-ios-telephone-outline"></i>
-  		</ion-item>
-  		<ion-item class="item-icon-left" href="#">
-  			<i class="icon ion-mic-a"></i>
-		    Record album
-		    <span class="item-note">
-		      Grammy
-		    </span>
-  		</ion-item>
-  		<ion-item class="item-icon-left" href="#">
-  			<i class="icon ion-mic-a"></i>
-		    Record album
-		    <i class="icon ion-person-stalker"></i>
-		    Friends
-		    <span class="badge badge-assertive">0</span>
-  		</ion-item>
+  		<ion-item class="item" ui-sref="app.user.detail">个人资料</ion-item>
+  		<ion-item class="item" ui-sref="app.user.changepwd">修改密码</ion-item>
+  		<div class="item item-divider">&nbsp;</div>
 		</ion-list>
 		<button class="button button-full button-assertive" ng-click="show()">
 		  退出

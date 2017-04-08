@@ -48,33 +48,31 @@ angular.module('configRouter', [])
 				url: '/user',
 				views: {
 					'menuContent': {
-						templateUrl: 'templates/account/user.html',
-						controller: 'UserCtrl'
+						templateUrl: 'templates/account/user.html'
 					}
 				}
 			})
 			.state('app.user.detail', {
 				url: '/detail',
+				cache:false ,
 				views: {
-					'menuContent': {
-						templateUrl: 'templates/account/detail.html',
-						controller: 'UserDetailCtrl'
+					'menuContent@app': {
+						templateUrl: 'templates/account/detail.html'
 					}
 				}
 			})
 			.state('app.user.change', {
 				url: '/change',
 				views: {
-					'menuContent': {
-						templateUrl: 'templates/account/change.html',
-						controller: 'UserChangeCtrl'
+					'menuContent@app': {
+						templateUrl: 'templates/account/change.html'
 					}
 				}
 			})
 			.state('app.user.changepwd', {
 				url: '/change',
 				views: {
-					'menuContent': {
+					'menuContent@app': {
 						templateUrl: 'templates/account/changepwd.html',
 						controller: 'UserChangepwdCtrl'
 					}

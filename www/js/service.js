@@ -125,10 +125,12 @@ angular.module("service", [])
 		factory.changepro = function(user) {
 			var deferred = $q.defer();
 			$http.post(baseUrl + "user/changepromo", {
-				name:user.name,
 				email:user.email,
 				telphone:user.telphone,
-				password:user.password
+				real_name:user.real_name,
+				sex:user.sex,
+				birth:user.birth,
+				signature:user.signature
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -138,7 +140,7 @@ angular.module("service", [])
 		}
 
 		// 修改密码
-		factory.detail = function(user) {
+		factory.changepwd = function(user) {
 			var deferred = $q.defer();
 
 			$http.post(baseUrl + "user/changepwd",{
@@ -153,5 +155,42 @@ angular.module("service", [])
 		}
 
 		return factory;
+	}])
+	.factory('PopupSer',['$ionicPopup','$timeout',function($ionicPopup,$timeout) {
+		var factory = {};
 
-	}]);
+		factory.show = function(msg) {
+			var myPopup = $ionicPopup.show({
+        title: msg,
+        buttons: null
+      });
+     $timeout(function() {
+        myPopup.close(); 
+      }, 2000);
+		}
+		factory.alertErr = function(err) {
+			$ionicPopup.alert({
+        title: '请求错误',
+        template: err,
+        okText: '确认'
+      });
+		}
+		factory.alert = function(msg) {
+			$ionicPopup.alert({
+        title: '提示',
+        template: msg,
+        okText: '确认'
+      });
+		}
+		factory.confirm = function(msg) {
+			return $ionicPopup.confirm({
+        title: '提示',
+        template: msg,
+        cancelText: '取消',
+        okText: '确认',
+      });
+		}
+
+		return factory;
+	}])
+	;

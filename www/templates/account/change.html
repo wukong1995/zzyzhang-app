@@ -1,5 +1,61 @@
-<ion-view view-title="Search">
-  <ion-content>
-    <h1>用户修改资料</h1>
+<ion-view view-title="修改资料">
+	<ion-header-bar class="bar-positive">
+    <h1 class="title">修改资料</h1>
+  </ion-header-bar>
+
+  <ion-content scroll="true" overflow-scroll="false" ng-controller="UserChangeCtrl">
+  	<div style="padding: 0 5px;">
+	    <ion-list class="userdetail">
+	    	<ion-item class="item">用户名<span class="item-note">{{user.name}}</span></ion-item>
+
+	    	<form ng-submit="doChange()">
+	    		<div class="list">
+	    			<div class="item item-divider">基本信息</div>
+		        <label class="item item-input item-stacked-label">
+		          <span class="input-label">邮箱</span>
+		          <input type="email" name="email" 
+		          ng-model="user.email" ng-required="true">
+		        </label>
+		        <label class="item item-input item-stacked-label">
+		          <span class="input-label">电话</span>
+		          <input type="text" name="telphone" 
+		          ng-model="user.telphone" ng-required="true" ng-pattern="/^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/"> 
+		        </label>
+		        <div class="item item-divider">其他信息</div>
+		        <label class="item item-input item-stacked-label">
+		          <span class="input-label">真实姓名</span>
+		          <input type="text" name="email" 
+		          ng-model="user.real_name" >
+		        </label>
+
+		        <label class="item item-input item-select">
+	            <div class="input-label">
+	              性别
+	            </div>
+	            <select ng-model="user.sex">
+	              <option ng-value="1">男</option>
+	              <option ng-value="2">女</option>
+	            </select>
+	          </label>
+
+		         <label class="item item-input item-stacked-label">
+		          <span class="input-label">出生日期</span>
+		          <div ng-click="chooseBirth()">
+			          <input type="text" name="birth" 
+			          ng-model="user.birth" disabled="disabled" date-format>
+		          </div>
+		        </label>
+		        <label class="item item-input item-stacked-label">
+		          <span class="input-label">个性签名</span>
+		         	<textarea name="signature" ng-model="user.signature" placeholder="个性签名"></textarea>
+		        </label>
+		        <label class="item">
+		          <button class="button button-block button-positive" type="submit">确定</button>
+		        </label>
+		      </div>
+	    	</form>
+	  		
+	    </ion-list>
+    </div>
   </ion-content>
 </ion-view>
