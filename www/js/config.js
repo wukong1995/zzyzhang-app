@@ -80,6 +80,7 @@ angular.module('configRouter', [])
 			})
 			.state('app.pay', {
 				url: '/pay',
+				cache:false,
 				views: {
 					'menuContent': {
 						templateUrl: 'templates/payment/list.html',
@@ -101,12 +102,12 @@ angular.module('configRouter', [])
 				views: {
 					'menuContent@app': {
 						templateUrl: 'templates/payment/add.html',
-						controller: 'PayAddCtrl'
 					}
 				}
 			})
 			.state('app.share', {
 				url: '/share',
+				cache:false,
 				views: {
 					'menuContent': {
 						templateUrl: 'templates/share/list.html',
@@ -134,6 +135,7 @@ angular.module('configRouter', [])
 			})
 			.state('app.assets', {
 				url: '/assets',
+				cache:false,
 				views: {
 					'menuContent': {
 						templateUrl: 'templates/assets/list.html',
@@ -170,6 +172,7 @@ angular.module('configRouter', [])
 			})
 			.state('app.bond', {
 				url: '/bond',
+				cache:false,
 				views: {
 					'menuContent': {
 						templateUrl: 'templates/bond/list.html',
@@ -197,6 +200,7 @@ angular.module('configRouter', [])
 			})
 			.state('app.borrow', {
 				url: '/borrow',
+				cache:false,
 				views: {
 					'menuContent': {
 						templateUrl: 'templates/borrow/list.html',
@@ -224,6 +228,7 @@ angular.module('configRouter', [])
 			})
 			.state('app.wish', {
 				url: '/wish',
+				cache:false,
 				views: {
 					'menuContent': {
 						templateUrl: 'templates/wish/list.html',

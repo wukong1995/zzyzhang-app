@@ -70,8 +70,10 @@ angular.module("service", [])
 			return deferred.promise;
 		}
 		factory.delItem = function(id) {
+			console.log(id)
+			
 			var deferred = $q.defer();
-			$http.delete(baseUrl + 'payment/list', {
+			$http.post(baseUrl + 'payment/list/del', {
 				id: id
 			}).success(function(data) {
 				deferred.resolve(data);
@@ -82,8 +84,24 @@ angular.module("service", [])
 		}
 		factory.detail = function(id) {
 			var deferred = $q.defer();
-			$http.post(baseUrl + 'payment/detail', {
+			$http.post(baseUrl + 'payment/detailmo', {
 				id: id
+			}).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+		factory.save = function(payment) {
+
+			var deferred = $q.defer();
+			$http.post(baseUrl + 'payment/savemo', {
+				type:payment.type,
+				name:payment.name,
+				product_type:payment.product_type,
+				price:payment.price,
+				remark:payment.remark
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {

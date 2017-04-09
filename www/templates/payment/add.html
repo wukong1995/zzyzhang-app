@@ -5,31 +5,31 @@
     </h1>
 	</ion-nav-title>
 
-		<ion-tabs class=" tabs-background-stable tabs-top">
+		<ion-tabs class=" tabs-background-stable tabs-top" ng-controller="PayAddCtrl">
 		  <ion-tab title="收入" >
 		    <!-- 标签 1 内容 -->
-		    <ion-content style="top: 86px;"  has-header="false">
-			    <form ng-submit="doLogin()">
+		    <ion-content style="top: 86px" scroll="true" overflow-scroll="false" >
+			    <form ng-submit="doSubmit()">
 			      <div class="list">
 			        <label class="item item-input item-stacked-label">
 			          <span class="input-label">名字</span>
-			          <input type="text" placeholder="名字">
+			          <input type="text" placeholder="名字" ng-model="payment.name">
 			        </label>
 			        <label class="item item-input item-select">
 			          <span class="input-label">类型</span>
-			          <select>
+			          <select ng-model="payment.product_type">
 			            <option value="奖金">奖金</option>
-			            <option value="工资" selected="selected">工资</option>
+			            <option value="工资" ng-selected="true == true">工资</option>
 			            <option value="其他">其他</option>
 			          </select>
 			        </label>
 			        <label class="item item-input item-stacked-label">
 			          <span class="input-label">价格</span>
-			          <input type="text" placeholder="价格">
+			          <input type="text" placeholder="价格" ng-model="payment.price">
 			        </label>
 			        <label class="item item-input item-stacked-label">
 			        	<span class="input-label">备注</span>
-			    			<textarea placeholder="描述一下~"></textarea>
+			    			<textarea placeholder="描述一下~" ng-model="payment.remark"></textarea>
 			        </label>
 			        <label class="item">
 			          <button class="button button-block button-positive" type="submit">确定</button>
@@ -40,17 +40,17 @@
 		  </ion-tab>
 		 
 		  <ion-tab title="支出">
-			  <ion-content style="top: 86px;" has-header="false">
-			    <form ng-submit="doLogin()">
+			  <ion-content style="top: 86px" scroll="true" overflow-scroll="false" >
+			    <form ng-submit="doSubmit()">
 			      <div class="list">
 			        <label class="item item-input item-stacked-label">
 			          <span class="input-label">名字</span>
-			          <input type="text" placeholder="名字">
+			          <input type="text" placeholder="名字" ng-model="payment1.name">
 			        </label>
 			        <label class="item item-input item-select">
 			          <span class="input-label">类型</span>
-			          <select>
-			            <option value="饮食" selected="selected">饮食</option>
+			          <select ng-model="payment1.product_type">
+			            <option value="饮食" ng-selected="true == true">饮食</option>
 			            <option value="服装" >服装</option>
 			            <option value="交通">交通</option>
 			            <option value="水电">水电</option>
@@ -63,11 +63,11 @@
 			        </label>
 			        <label class="item item-input item-stacked-label">
 			          <span class="input-label">价格</span>
-			          <input type="text" placeholder="价格">
+			          <input type="text" placeholder="价格" ng-model="payment1.price">
 			        </label>
 			        <label class="item item-input item-stacked-label">
 			        	<span class="input-label">备注</span>
-			    			<textarea placeholder="描述一下~"></textarea>
+			    			<textarea placeholder="描述一下~" ng-model="payment1.remark"></textarea>
 			        </label>
 			        <label class="item">
 			          <button class="button button-block button-positive" type="submit">确定</button>

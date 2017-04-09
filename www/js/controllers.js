@@ -69,10 +69,8 @@ angular.module('starter.controllers', [])
       LoginSer.forgetpwd($scope.user).then(function(res) {
         $ionicLoading.hide();
         if(res.success == 0) {
-            $ionicLoading.hide();
             PopupSer.show(res.message);
         } else {
-          $ionicLoading.hide();
           PopupSer.alert('密码已重置为123456，请及时修改密码!');
           $location.path('/signin');
         }
@@ -85,8 +83,8 @@ angular.module('starter.controllers', [])
   .controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', function($scope, $ionicModal, $timeout) {
     //
   }])
-  .controller('PayCtrl', ['$scope', '$location','PopupSer', 'PaySer',
-   function($scope, $location, PopupSer,PaySer) {
+  .controller('PayCtrl', ['$scope','$ionicLoading', '$location','PopupSer', 'PaySer',
+   function($scope,$ionicLoading, $location, PopupSer,PaySer) {
     // 初始化参数
     var self = this;
     self.page = 0;
@@ -121,13 +119,18 @@ angular.module('starter.controllers', [])
         PopupSer.alertErr(err);
       });
     }
+
     $scope.onItemDelete = function(item) {
       // 一个确认对话框
       var confirmPopup = PopupSer.confirm('确认删除这条记录？');
 
       confirmPopup.then(function(res) {
         if (res) {
+          $ionicLoading.show({
+            template: '正在删除'
+          });
           PaySer.delItem(item._id).then(function(data) {
+            $ionicLoading.hide();
             if (data.success === 1) {
               $scope.items.splice($scope.items.indexOf(item), 1);
               PopupSer.alert('删除成功');
@@ -135,34 +138,65 @@ angular.module('starter.controllers', [])
               PopupSer.alert('删除出错，请重试！');
             }
           }, function(err) {
+            $ionicLoading.hide();
             PopupSer.alertErr(err);
           });
         }
       });
     };
   }])
-  .controller('PayDetailCtrl', ['$scope', '$stateParams', 'PaySer', function($scope, $stateParams, PaySer) {
+  .controller('PayDetailCtrl', ['$scope', '$stateParams', 'PaySer','PopupSer', 
+    function($scope, $stateParams, PaySer,PopupSer) {
     $scope.id = $stateParams.id;
 
     PaySer.detail($scope.id).then(function(data) {
       $scope.payment = data.payment;
 
     }, function(err) {
-      $ionicPopup.alert({
-        title: '请求错误',
-        template: err,
-        okText: '确认'
-      });
+      PopupSer.alertErr(err);
     });
   }])
-  .controller('PayAddCtrl', ['$scope', '$stateParams', '$timeout', '$location', function($scope, $stateParams, $timeout, $location) {
-    $scope.title = '收支增加';
-    $scope.doLogin = function() {
-      console.log('Doing login', $scope.loginData);
+  .controller('PayAddCtrl', ['$scope','$ionicLoading','$ionicTabsDelegate', '$location','PaySer','PopupSer', 
+   function($scope,$ionicLoading,$ionicTabsDelegate,$location,PaySer,PopupSer) {
+    $scope.payment = {
+      type : 0
+    };
+    $scope.payment1 = {
+      type : 1
+    };
+    $scope.doSubmit = function() {
+      $ionicLoading.show({
+        template: '正在增加'
+      });
+        
+      if($ionicTabsDelegate.selectedIndex() == 0) {
 
-      $timeout(function() {
-        $location.path('/app/pay/detail/0');
-      }, 1000);
+        PaySer.save($scope.payment).then(function(res) {
+          $ionicLoading.hide();
+          if(res.success == 0) {
+            PopupSer.show(res.message);
+          } else {
+            PopupSer.show('增加成功');
+            $location.path('/app/pay/detail/' + res.id);
+          }
+        }, function(err) {
+          PopupSer.alertErr(err);
+        });
+      } else {
+
+         PaySer.save($scope.payment1).then(function(res) {
+          $ionicLoading.hide();
+          if(res.success == 0) {
+              PopupSer.show(res.message);
+          } else {
+            PopupSer.show('增加成功');
+            $location.path('/app/pay/detail/' + res.id);
+          }
+        }, function(err) {
+          PopupSer.alertErr(err);
+        });
+      }
+
     };
   }])
   .controller('ShareCtrl', ['$scope', '$ionicPopup', '$location', function($scope, $ionicPopup, $location) {
