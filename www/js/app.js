@@ -1,11 +1,6 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers','ionic-datepicker', 'configRouter', 'filter', 'service','directive'])
-  .config(function($httpProvider,ionicDatePickerProvider) {
+  .config(['$httpProvider','ionicDatePickerProvider',
+    function($httpProvider,ionicDatePickerProvider) {
     $httpProvider.defaults.transformRequest = function(obj) {
       var str = [];
       for (var p in obj) {
@@ -16,6 +11,20 @@ angular.module('starter', ['ionic', 'starter.controllers','ionic-datepicker', 'c
     $httpProvider.defaults.headers.post = {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
+
+    // 为http 增加loading效果
+    $httpProvider.interceptors.push(function($rootScope) {
+      return {
+        request: function(config) {
+          $rootScope.$broadcast('loading:show')
+          return config
+        },
+        response: function(response) {
+          $rootScope.$broadcast('loading:hide')
+          return response
+        }
+      }
+    });
 
     //添加拦截器  
     $httpProvider.interceptors.push('sessionInteceptor');
@@ -36,20 +45,27 @@ angular.module('starter', ['ionic', 'starter.controllers','ionic-datepicker', 'c
       disableWeekdays: []
     };
     ionicDatePickerProvider.configDatePicker(datePickerObj);
-  })
+  }])
   .value('baseUrl', 'http://192.168.1.104:3000/')
-  .run(function($ionicPlatform) {
+
+  .run(['$ionicPlatform','$rootScope','$ionicLoading',
+    function($ionicPlatform,$rootScope,$ionicLoading) {
     $ionicPlatform.ready(function() {
-      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
+
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
 
       }
       if (window.StatusBar) {
-        // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
     });
-  })
+    $rootScope.$on('loading:show', function() {
+      $ionicLoading.show({template: 'loading'})
+    });
+
+    $rootScope.$on('loading:hide', function() {
+      $ionicLoading.hide()
+    });
+    }])

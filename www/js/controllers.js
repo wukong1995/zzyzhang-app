@@ -159,10 +159,12 @@ angular.module('starter.controllers', [])
   .controller('PayAddCtrl', ['$scope','$ionicLoading','$ionicTabsDelegate', '$location','PaySer','PopupSer', 
    function($scope,$ionicLoading,$ionicTabsDelegate,$location,PaySer,PopupSer) {
     $scope.payment = {
-      type : 0
+      type : 0,
+      product_type:'工资'
     };
     $scope.payment1 = {
-      type : 1
+      type : 1,
+       product_type:'饮食'
     };
     $scope.doSubmit = function() {
       $ionicLoading.show({

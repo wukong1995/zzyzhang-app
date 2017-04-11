@@ -57,11 +57,13 @@ angular.module("service", [])
 		factory.getList = function(keyword, page, limit) {
 			var deferred = $q.defer();
 			var start = page * limit;
-			$http.post(baseUrl + "payment/result", {
-				keyword: keyword,
-				page: page,
-				start: start,
-				limit: limit
+			$http.get(baseUrl + "payment/result", {
+				params:{
+					keyword: keyword,
+					page: page,
+					start: start,
+					limit: limit
+				}
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -73,8 +75,10 @@ angular.module("service", [])
 			console.log(id)
 			
 			var deferred = $q.defer();
-			$http.post(baseUrl + 'payment/list/del', {
-				id: id
+			$http.delete(baseUrl + 'payment/list/del', {
+				params:{
+					id:id
+				}
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -84,9 +88,7 @@ angular.module("service", [])
 		}
 		factory.detail = function(id) {
 			var deferred = $q.defer();
-			$http.post(baseUrl + 'payment/detailmo', {
-				id: id
-			}).success(function(data) {
+			$http.get(baseUrl + 'payment/detailmo/'+id).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
 				deferred.reject(err);
