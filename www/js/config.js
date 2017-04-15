@@ -111,7 +111,7 @@ angular.module('configRouter', [])
 				views: {
 					'menuContent': {
 						templateUrl: 'templates/share/list.html',
-						controller: 'ShareCtrl'
+				controller: 'ShareCtrl'
 					}
 				}
 			})

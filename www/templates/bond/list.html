@@ -1,10 +1,11 @@
 <ion-view view-title="债券列表">
 
   <ion-nav-buttons side="right">
-        <a class="button button-clear button-icon ion-plus-round" ui-sref="app.pay.add"></a>
+        <a class="button button-clear button-icon ion-plus-round" ui-sref="app.bond.add"></a>
     </ion-nav-buttons>
 
   <ion-content overflow-scroll="false">
+  <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
     <div class="bar bar-header item-input-inset">
       <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
@@ -19,7 +20,7 @@
 		  </ion-item> -->
       <ion-item ng-repeat="item in items" 
                 item="item"
-                ui-sref="app.pay.detail({id:item._id})" class="item-remove-animate">
+                ui-sref="app.bond.detail({id:item._id})" class="item-remove-animate">
         {{ item.name }}
         <ion-option-button class="button-calm"
                            ng-click="onItemDelete(item)">

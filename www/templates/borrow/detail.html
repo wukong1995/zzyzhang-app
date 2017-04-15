@@ -1,5 +1,49 @@
-<ion-view view-title="Search">
+<ion-view view-title="借贷详情">
+	<ion-nav-title>
+    <h1 class="title">借贷详情</h1>
+	</ion-nav-title>
   <ion-content>
-    <h1>债券详情</h1>
+  	<div class="record">
+		  <div class="list">
+			  <div class="item">
+			    <h1 class="center">{{borrow.type == 0 ? '+' : '-'}}{{borrow.price}}</h1>
+			  </div>
+
+			  <div class="item">
+		      对方名字
+		      <span class="item-value">
+		        {{borrow.other}}
+		      </span>
+		    </div>
+		    <div class="item">
+		      对方电话
+		      <span class="item-value">
+		        {{borrow.telphone}}
+		      </span>
+		    </div>
+		     <div class="item">
+		      类型
+		      <span class="item-value">
+		        {{borrow.type == 0 ? '借入' : '借出'}}
+		      </span>
+		    </div>
+				<label class="item item-input item-stacked-label">
+	        <span class="input-label">备注</span>
+	        <textarea disabled="disabled" name="remark" >{{borrow.remark || '暂无'}}</textarea>
+	      </label>
+		    <div class="item">
+		      创建日期
+		      <span class="item-value">
+		        {{borrow.meta.createAt | DateFilter}}
+		      </span>
+		    </div>
+	<!-- 	    <div class="item">
+		      编号
+		      <span class="item-value">
+		        {{borrow._id}}
+		      </span>
+		    </div> -->
+	  	</div>
+  	</div>
   </ion-content>
 </ion-view>

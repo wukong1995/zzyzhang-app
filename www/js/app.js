@@ -55,7 +55,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
     share: 'share',
     wish: 'wishlist'
   })
-  .value('baseUrl', 'http://192.168.1.104:3000/', )
+  .value('baseUrl', 'http://192.168.1.104:3000/')
 
 .run(['$ionicPlatform', '$rootScope', '$ionicLoading',
   function($ionicPlatform, $rootScope, $ionicLoading) {

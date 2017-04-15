@@ -51,26 +51,6 @@ angular.module("service", [])
 		return factory;
 
 	}])
-	.factory('PaySer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
-		var factory = {};
-		factory.save = function(payment) {
-
-			var deferred = $q.defer();
-			$http.post(baseUrl + 'payment/savemo', {
-				type: payment.type,
-				name: payment.name,
-				product_type: payment.product_type,
-				price: payment.price,
-				remark: payment.remark
-			}).success(function(data) {
-				deferred.resolve(data);
-			}).error(function(err) {
-				deferred.reject(err);
-			});
-			return deferred.promise;
-		}
-		return factory;
-	}])
 	.factory('UserSer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
 		var factory = {};
 
@@ -181,8 +161,6 @@ angular.module("service", [])
 				return deferred.promise;
 			}
 			factory.delItem = function(url_type, id) {
-				console.log(id)
-
 				var deferred = $q.defer();
 				$http.delete(baseUrl + url_type + '/list/del', {
 					params: {
@@ -207,6 +185,150 @@ angular.module("service", [])
 			return factory;
 		}
 	])
+	.factory('PaySer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
+		var factory = {};
+		factory.save = function(payment) {
+
+			var deferred = $q.defer();
+			$http.post(baseUrl + 'payment/savemo', {
+				type: payment.type,
+				name: payment.name,
+				product_type: payment.product_type,
+				price: payment.price,
+				remark: payment.remark
+			}).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+		return factory;
+	}])
+	.factory('AssetsSer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
+		var factory = {};
+
+		factory.save = function(assets) {
+			var deferred = $q.defer();
+			if (assets._id) {
+				var _assets = {
+					_id: assets._id,
+					type: assets.type,
+					name: assets.name,
+					price: assets.price,
+					remark: assets.remark
+				}
+			} else {
+				var _assets = {
+					type: assets.type,
+					name: assets.name,
+					price: assets.price,
+					remark: assets.remark
+				}
+			}
+			$http.post(baseUrl + 'assets/savemo', _assets)
+				.success(function(data) {
+					deferred.resolve(data);
+				}).error(function(err) {
+					deferred.reject(err);
+				});
+			return deferred.promise;
+		}
+		return factory;
+	}])
+	.factory('BondSer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
+		var factory = {};
+		factory.save = function(payment) {
+
+			var deferred = $q.defer();
+			$http.post(baseUrl + 'bond/savemo', {
+				type: payment.type,
+				name: payment.name,
+				product_type: payment.product_type,
+				price: payment.price,
+				remark: payment.remark
+			}).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+		return factory;
+	}])
+	.factory('BorrowSer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
+		var factory = {};
+		factory.save = function(payment) {
+
+			var deferred = $q.defer();
+			$http.post(baseUrl + 'borrowing/savemo', {
+				type: payment.type,
+				name: payment.name,
+				product_type: payment.product_type,
+				price: payment.price,
+				remark: payment.remark
+			}).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+		return factory;
+	}])
+	.factory('ShareSer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
+		var factory = {};
+		factory.save = function(payment) {
+
+			var deferred = $q.defer();
+			$http.post(baseUrl + 'share/savemo', {
+				type: payment.type,
+				name: payment.name,
+				product_type: payment.product_type,
+				price: payment.price,
+				remark: payment.remark
+			}).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+		return factory;
+	}])
+	.factory('WishSer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
+		var factory = {};
+		factory.save = function(wish) {
+
+			var deferred = $q.defer();
+			$http.post(baseUrl + 'wishlist/savemo', {
+				type: payment.type,
+				name: payment.name,
+				product_type: payment.product_type,
+				price: payment.price,
+				remark: payment.remark
+			}).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+		factory.buy = function(id) {
+			var deferred = $q.defer();
+			$http.get(baseUrl + 'wishlist/action/buy', {
+				params: {
+					id: id
+				}
+			}).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+		return factory;
+	}])
 	.factory('sessionInteceptor', [function() {
 
 		var sessionInjector = {

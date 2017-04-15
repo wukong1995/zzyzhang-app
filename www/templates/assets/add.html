@@ -1,5 +1,40 @@
-<ion-view view-title="Search">
-  <ion-content>
-    <h1>资产添加</h1>
+<ion-view view-title={{assets._id? '编辑资产':'增加资产'}}>
+  <ion-nav-title>
+    <h1 class="title">{{assets._id? '编辑资产':'增加资产'}}</h1>
+	</ion-nav-title>
+
+  <ion-content scroll="true" overflow-scroll="false" >
+    <form ng-submit="doSubmit()">
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">名字</span>
+          <input type="text" placeholder="名字" ng-model="assets.name">
+        </label>
+        <label class="item item-input item-select">
+          <span class="input-label">类型</span>
+          <select ng-model="assets.type">
+            <option value="流动资产">流动资产</option>
+            <option value="固定资产">固定资产</option>
+            <option value="有形资产">有形资产</option>
+            <option value="无形资产">无形资产</option>
+            <option value="不动产">	不动产</option>
+          </select>
+
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">价格</span>
+          <input type="text" placeholder="价格" ng-model="assets.price">
+        </label>
+        <label class="item item-input item-stacked-label">
+        	<span class="input-label">备注</span>
+    			<textarea placeholder="描述一下~" ng-model="assets.remark"></textarea>
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">确定</button>
+        </label>
+      </div>
+    </form>
   </ion-content>
+
+
 </ion-view>

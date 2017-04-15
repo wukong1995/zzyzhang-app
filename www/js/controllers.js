@@ -90,11 +90,13 @@ angular.module('starter.controllers', [])
     function($scope, $ionicLoading, $location, Const, PopupSer, CommonSer) {
       // 初始化参数
       var self = this;
-      self.page = 0;
-      self.limit = 15;
-      $scope.keyword = '';
-      $scope.items = [];
-      $scope.moredata = true;
+      self.reset = function() {
+        self.page = 0;
+        self.limit = 15;
+        $scope.keyword = '';
+        $scope.items = [];
+        $scope.moredata = false;
+      }
 
       $scope.loadData = function() {
         CommonSer.getList(Const.payment, $scope.keyword, self.page, self.limit)
@@ -108,6 +110,15 @@ angular.module('starter.controllers', [])
             PopupSer.alertErr(err);
           });
       };
+
+      self.reset();
+      $scope.loadData();
+
+      $scope.doRefresh = function() {
+        self.reset();
+        $scope.loadData();
+        $scope.$broadcast('scroll.refreshComplete');
+      }
 
       $scope.search = function(keyword) {
         $scope.keyword = keyword;
@@ -164,14 +175,9 @@ angular.module('starter.controllers', [])
         product_type: '饮食'
       };
       $scope.doSubmit = function() {
-        $ionicLoading.show({
-          template: '正在增加'
-        });
 
         if ($ionicTabsDelegate.selectedIndex() == 0) {
-
           PaySer.save($scope.payment).then(function(res) {
-            $ionicLoading.hide();
             if (res.success == 0) {
               PopupSer.show(res.message);
             } else {
@@ -182,9 +188,7 @@ angular.module('starter.controllers', [])
             PopupSer.alertErr(err);
           });
         } else {
-
           PaySer.save($scope.payment1).then(function(res) {
-            $ionicLoading.hide();
             if (res.success == 0) {
               PopupSer.show(res.message);
             } else {
@@ -203,11 +207,13 @@ angular.module('starter.controllers', [])
     function($scope, $ionicLoading, $location, Const, PopupSer, CommonSer) {
       // 初始化参数
       var self = this;
-      self.page = 0;
-      self.limit = 15;
-      $scope.keyword = '';
-      $scope.items = [];
-      $scope.moredata = true;
+      self.reset = function() {
+        self.page = 0;
+        self.limit = 15;
+        $scope.keyword = '';
+        $scope.items = [];
+        $scope.moredata = false;
+      }
 
       $scope.loadData = function() {
         CommonSer.getList(Const.share, $scope.keyword, self.page, self.limit)
@@ -222,6 +228,14 @@ angular.module('starter.controllers', [])
           });
       };
 
+      self.reset();
+      $scope.loadData();
+
+      $scope.doRefresh = function() {
+        self.reset();
+        $scope.loadData();
+        $scope.$broadcast('scroll.refreshComplete');
+      }
 
       $scope.search = function(keyword) {
         $scope.keyword = keyword;
@@ -281,11 +295,13 @@ angular.module('starter.controllers', [])
     function($scope, $ionicLoading, $location, Const, PopupSer, CommonSer) {
       // 初始化参数
       var self = this;
-      self.page = 0;
-      self.limit = 15;
-      $scope.keyword = '';
-      $scope.items = [];
-      $scope.moredata = true;
+      self.reset = function() {
+        self.page = 0;
+        self.limit = 15;
+        $scope.keyword = '';
+        $scope.items = [];
+        $scope.moredata = false;
+      }
 
       $scope.loadData = function() {
         CommonSer.getList(Const.borrow, $scope.keyword, self.page, self.limit)
@@ -300,6 +316,14 @@ angular.module('starter.controllers', [])
           });
       };
 
+      self.reset();
+      $scope.loadData();
+
+      $scope.doRefresh = function() {
+        self.reset();
+        $scope.loadData();
+        $scope.$broadcast('scroll.refreshComplete');
+      }
 
       $scope.search = function(keyword) {
         $scope.keyword = keyword;
@@ -335,7 +359,7 @@ angular.module('starter.controllers', [])
       CommonSer.detail(Const.borrow, $scope.id)
         .then(function(res) {
           if (res.success == 1) {
-            $scope.share = res.data;
+            $scope.borrow = res.data;
           } else {
             PopupSer.alert('后台查询错误');
           }
@@ -359,11 +383,13 @@ angular.module('starter.controllers', [])
     function($scope, $ionicLoading, $location, Const, PopupSer, CommonSer) {
       // 初始化参数
       var self = this;
-      self.page = 0;
-      self.limit = 15;
-      $scope.keyword = '';
-      $scope.items = [];
-      $scope.moredata = true;
+      self.reset = function() {
+        self.page = 0;
+        self.limit = 15;
+        $scope.keyword = '';
+        $scope.items = [];
+        $scope.moredata = false;
+      }
 
       $scope.loadData = function() {
         CommonSer.getList(Const.bond, $scope.keyword, self.page, self.limit)
@@ -378,6 +404,14 @@ angular.module('starter.controllers', [])
           });
       };
 
+      self.reset();
+      $scope.loadData();
+
+      $scope.doRefresh = function() {
+        self.reset();
+        $scope.loadData();
+        $scope.$broadcast('scroll.refreshComplete');
+      }
 
       $scope.search = function(keyword) {
         $scope.keyword = keyword;
@@ -413,7 +447,7 @@ angular.module('starter.controllers', [])
       CommonSer.detail(Const.bond, $scope.id)
         .then(function(res) {
           if (res.success == 1) {
-            $scope.share = res.data;
+            $scope.bond = res.data;
           } else {
             PopupSer.alert('后台查询错误');
           }
@@ -437,11 +471,13 @@ angular.module('starter.controllers', [])
     function($scope, $ionicLoading, $location, Const, PopupSer, CommonSer) {
       // 初始化参数
       var self = this;
-      self.page = 0;
-      self.limit = 15;
-      $scope.keyword = '';
-      $scope.items = [];
-      $scope.moredata = true;
+      self.reset = function() {
+        self.page = 0;
+        self.limit = 15;
+        $scope.keyword = '';
+        $scope.items = [];
+        $scope.moredata = false;
+      }
 
       $scope.loadData = function() {
         CommonSer.getList(Const.assets, $scope.keyword, self.page, self.limit)
@@ -456,10 +492,22 @@ angular.module('starter.controllers', [])
           });
       };
 
+      self.reset();
+      $scope.loadData();
+
+      $scope.doRefresh = function() {
+        self.reset();
+        $scope.loadData();
+        $scope.$broadcast('scroll.refreshComplete');
+      }
 
       $scope.search = function(keyword) {
         $scope.keyword = keyword;
         $scope.loadData();
+      }
+
+      $scope.edit = function(id) {
+        $location.path('/app/assets/edit/' + id);
       }
 
       $scope.onItemDelete = function(item) {
@@ -488,10 +536,10 @@ angular.module('starter.controllers', [])
     function($scope, $stateParams, Const, CommonSer, PopupSer) {
       $scope.id = $stateParams.id;
 
-      CommonSer.detail(Const.bond, $scope.id)
+      CommonSer.detail(Const.assets, $scope.id)
         .then(function(res) {
           if (res.success == 1) {
-            $scope.share = res.data;
+            $scope.assets = res.data;
           } else {
             PopupSer.alert('后台查询错误');
           }
@@ -501,39 +549,68 @@ angular.module('starter.controllers', [])
         });
     }
   ])
-  .controller('AssetsAddCtrl', ['$scope', '$stateParams', '$timeout', '$location', function($scope, $stateParams, $timeout, $location) {
-    $scope.title = '收支增加';
-    $scope.doLogin = function() {
-      console.log('Doing login', $scope.loginData);
+  .controller('AssetsAddCtrl', ['$scope', '$location', 'PopupSer', 'AssetsSer',
+    function($scope, $location, PopupSer, AssetsSer) {
+      $scope.assets = {
+        type: "流动资产"
+      };
 
-      $timeout(function() {
-        $location.path('/app/pay/detail/0');
-      }, 1000);
-    };
-  }])
-  .controller('AssetsEditCtrl', ['$scope', '$stateParams', 'AssetsSer', function($scope, $stateParams, AssetsSer) {
-    $scope.id = $stateParams.id;
+      $scope.doSubmit = function() {
+        AssetsSer.save($scope.assets).then(function(res) {
+          if (res.success == 0) {
+            PopupSer.show(res.message);
+          } else {
+            PopupSer.show('增加成功');
+            $location.path('/app/assets/detail/' + res.id);
+          }
+        }, function(err) {
+          PopupSer.alertErr(err);
+        });
+      };
+    }
+  ])
+  .controller('AssetsEditCtrl', ['$scope', '$location', '$stateParams', 'PopupSer', 'Const', 'CommonSer', 'AssetsSer',
+    function($scope, $location, $stateParams, PopupSer, Const, CommonSer, AssetsSer) {
+      $scope.id = $stateParams.id;
 
-    shareSer.detail($scope.id).then(function(data) {
-      $scope.sharement = data.sharement;
+      CommonSer.detail(Const.assets, $scope.id)
+        .then(function(res) {
+          if (res.success == 1) {
+            $scope.assets = res.data;
+          } else {
+            PopupSer.alert('后台查询错误');
+          }
 
-    }, function(err) {
-      $ionicPopup.alert({
-        title: '请求错误',
-        template: err,
-        okText: '确认'
-      });
-    });
-  }])
-  .controller('WishCtrl', ['$scope', '$ionicLoading', '$location', 'Const', 'PopupSer', 'CommonSer',
-    function($scope, $ionicLoading, $location, Const, PopupSer, CommonSer) {
+        }, function(err) {
+          PopupSer.alertErr(err);
+        });
+
+      $scope.doSubmit = function() {
+        AssetsSer.save($scope.assets).then(function(res) {
+          if (res.success == 0) {
+            PopupSer.show(res.message);
+          } else {
+            PopupSer.show('修改成功');
+            $location.path('/app/assets/detail/' + res.id);
+          }
+        }, function(err) {
+          PopupSer.alertErr(err);
+        });
+      };
+    }
+  ])
+  .controller('WishCtrl', ['$scope', '$ionicLoading', '$location', 'Const', 'PopupSer', 'CommonSer', 'WishSer',
+    function($scope, $ionicLoading, $location, Const, PopupSer, CommonSer, WishSer) {
       // 初始化参数
       var self = this;
-      self.page = 0;
-      self.limit = 15;
-      $scope.keyword = '';
-      $scope.items = [];
-      $scope.moredata = true;
+
+      self.reset = function() {
+        self.page = 0;
+        self.limit = 15;
+        $scope.keyword = '';
+        $scope.items = [];
+        $scope.moredata = false;
+      }
 
       $scope.loadData = function() {
         CommonSer.getList(Const.wish, $scope.keyword, self.page, self.limit)
@@ -547,6 +624,15 @@ angular.module('starter.controllers', [])
             PopupSer.alertErr(err);
           });
       };
+
+      self.reset();
+      $scope.loadData();
+
+      $scope.doRefresh = function() {
+        self.reset();
+        $scope.loadData();
+        $scope.$broadcast('scroll.refreshComplete');
+      }
 
       $scope.search = function(keyword) {
         $scope.keyword = keyword;
@@ -580,17 +666,17 @@ angular.module('starter.controllers', [])
 
         confirmPopup.then(function(res) {
           if (res) {
-        // CommonSer.delItem(Const.wish, item._id)
-        //   .then(function(data) {
-        //     if (data.success === 1) {
-        //       $scope.items.splice($scope.items.indexOf(item), 1);
-        //       PopupSer.alert('删除成功');
-        //     } else {
-        //       PopupSer.alert('删除出错，请重试！');
-        //     }
-        //   }, function(err) {
-        //     PopupSer.alertErr(err);
-        //   });
+            WishSer.buy(item._id)
+              .then(function(data) {
+                if (data.success === 1) {
+                  $scope.items.splice($scope.items.indexOf(item), 1);
+                  PopupSer.alert('操作成功');
+                } else {
+                  PopupSer.alert('操作出错，请重试！');
+                }
+              }, function(err) {
+                PopupSer.alertErr(err);
+              });
           }
         });
       };
@@ -600,10 +686,10 @@ angular.module('starter.controllers', [])
     function($scope, $stateParams, Const, CommonSer, PopupSer) {
       $scope.id = $stateParams.id;
 
-      CommonSer.detail(Const.bond, $scope.id)
+      CommonSer.detail(Const.wish, $scope.id)
         .then(function(res) {
           if (res.success == 1) {
-            $scope.share = res.data;
+            $scope.wish = res.data;
           } else {
             PopupSer.alert('后台查询错误');
           }

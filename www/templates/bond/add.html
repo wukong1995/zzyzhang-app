@@ -1,5 +1,37 @@
-<ion-view view-title="Search">
-  <ion-content>
-    <h1>债券增加</h1>
+<ion-view view-title='增加债券'>
+  <ion-nav-title>
+    <h1 class="title">增加债券</h1>
+	</ion-nav-title>
+
+  <ion-content scroll="true" overflow-scroll="false" >
+    <form ng-submit="doSubmit()">
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">名字</span>
+          <input type="text" placeholder="名字" ng-model="assets.name">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">代码</span>
+          <input type="text" placeholder="名字" ng-model="assets.code">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">价格</span>
+          <input type="text" placeholder="价格" ng-model="assets.price">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">收益率</span>
+          <input type="text" placeholder="名字" ng-model="assets.yield">
+        </label>
+        <label class="item item-input item-stacked-label">
+        	<span class="input-label">备注</span>
+    			<textarea placeholder="描述一下~" ng-model="assets.remark"></textarea>
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">确定</button>
+        </label>
+      </div>
+    </form>
   </ion-content>
+
+
 </ion-view>

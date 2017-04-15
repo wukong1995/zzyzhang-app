@@ -5,6 +5,7 @@
     </ion-nav-buttons>
 
   <ion-content overflow-scroll="false">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
     <div class="bar bar-header item-input-inset">
       <label class="item-input-wrapper">
         <i class="icon ion-ios-search placeholder-icon"></i>
@@ -19,8 +20,8 @@
 		  </ion-item> -->
       <ion-item ng-repeat="item in items" 
                 item="item"
-                ui-sref="app.pay.detail({id:item._id})" class="item-remove-animate">
-        {{ item.name }}
+                ui-sref="app.borrow.detail({id:item._id})" class="item-remove-animate">
+        {{ item.other }}
         <ion-option-button class="button-calm"
                            ng-click="onItemDelete(item)">
           删除

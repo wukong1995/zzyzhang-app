@@ -1,5 +1,50 @@
-<ion-view view-title="Search">
+<ion-view view-title="股票详情">
+	<ion-nav-title>
+    <h1 class="title">股票详情</h1>
+	</ion-nav-title>
   <ion-content>
-    <h1>股票详情</h1>
+  	<div class="record">
+		  <div class="list">
+			  <div class="item">
+			    <h1 class="center">{{share.income}}</h1>
+			  </div>
+
+			  <div class="item">
+		      名字
+		      <span class="item-value">
+		        {{share.name}}
+		      </span>
+		    </div>
+
+		    <div class="item">
+		      股数
+		      <span class="item-value">
+		        {{share.count}}
+		      </span>
+		    </div>
+		    <div class="item">
+		      买入价格
+		      <span class="item-value">
+		        {{share.first_price}}
+		      </span>
+		    </div>
+		    <div class="item">
+		      卖出价格
+		      <span class="item-value">
+		        {{share.last_price}}
+		      </span>
+		    </div>
+				<label class="item item-input item-stacked-label">
+	        <span class="input-label">备注</span>
+	        <textarea disabled="disabled" name="remark" >{{share.remark || '暂无'}}</textarea>
+	      </label>
+		    <div class="item">
+		      创建日期
+		      <span class="item-value">
+		        {{share.meta.createAt | DateFilter}}
+		      </span>
+		    </div>
+	  	</div>
+  	</div>
   </ion-content>
 </ion-view>
