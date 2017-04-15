@@ -1,5 +1,5 @@
 angular.module("service", [])
-	.factory('LoginSer',['$http','$q','baseUrl',function($http,$q,baseUrl) {
+	.factory('LoginSer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
 		var factory = {};
 
 		// 登录
@@ -8,7 +8,7 @@ angular.module("service", [])
 
 			$http.post(baseUrl + "user/signin", {
 				name: user.name,
-				password:user.password
+				password: user.password
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -21,10 +21,10 @@ angular.module("service", [])
 		factory.signup = function(user) {
 			var deferred = $q.defer();
 			$http.post(baseUrl + "user/signup", {
-				name:user.name,
-				email:user.email,
-				telphone:user.telphone,
-				password:user.password
+				name: user.name,
+				email: user.email,
+				telphone: user.telphone,
+				password: user.password
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -37,9 +37,9 @@ angular.module("service", [])
 		factory.forgetpwd = function(user) {
 			var deferred = $q.defer();
 			$http.post(baseUrl + "user/forgetpwd", {
-				name:user.name,
-				email:user.email,
-				telphone:user.telphone
+				name: user.name,
+				email: user.email,
+				telphone: user.telphone
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -53,57 +53,15 @@ angular.module("service", [])
 	}])
 	.factory('PaySer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
 		var factory = {};
-
-		factory.getList = function(keyword, page, limit) {
-			var deferred = $q.defer();
-			var start = page * limit;
-			$http.get(baseUrl + "payment/result", {
-				params:{
-					keyword: keyword,
-					page: page,
-					start: start,
-					limit: limit
-				}
-			}).success(function(data) {
-				deferred.resolve(data);
-			}).error(function(err) {
-				deferred.reject(err);
-			});
-			return deferred.promise;
-		}
-		factory.delItem = function(id) {
-			console.log(id)
-			
-			var deferred = $q.defer();
-			$http.delete(baseUrl + 'payment/list/del', {
-				params:{
-					id:id
-				}
-			}).success(function(data) {
-				deferred.resolve(data);
-			}).error(function(err) {
-				deferred.reject(err);
-			});
-			return deferred.promise;
-		}
-		factory.detail = function(id) {
-			var deferred = $q.defer();
-			$http.get(baseUrl + 'payment/detailmo/'+id).success(function(data) {
-				deferred.resolve(data);
-			}).error(function(err) {
-				deferred.reject(err);
-			});
-			return deferred.promise;
-		}
 		factory.save = function(payment) {
 
 			var deferred = $q.defer();
 			$http.post(baseUrl + 'payment/savemo', {
-				type:payment.type,
-				name:payment.name,
-				product_type:payment.product_type,
-				price:payment.price,
-				remark:payment.remark
+				type: payment.type,
+				name: payment.name,
+				product_type: payment.product_type,
+				price: payment.price,
+				remark: payment.remark
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -113,20 +71,7 @@ angular.module("service", [])
 		}
 		return factory;
 	}])
-	.factory('sessionInteceptor', [function() {
-
-		var sessionInjector = {
-			request: function(config) {
-				var token = localStorage.getItem('userid');
-				if (token) {
-					config.headers['token'] = token;
-				}
-				return config;
-			}
-		};
-		return sessionInjector;
-	}])
-	.factory('UserSer',['$http','$q','baseUrl',function($http,$q,baseUrl) {
+	.factory('UserSer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
 		var factory = {};
 
 		// 用户详情页面
@@ -145,12 +90,12 @@ angular.module("service", [])
 		factory.changepro = function(user) {
 			var deferred = $q.defer();
 			$http.post(baseUrl + "user/changepromo", {
-				email:user.email,
-				telphone:user.telphone,
-				real_name:user.real_name,
-				sex:user.sex,
-				birth:user.birth,
-				signature:user.signature
+				email: user.email,
+				telphone: user.telphone,
+				real_name: user.real_name,
+				sex: user.sex,
+				birth: user.birth,
+				signature: user.signature
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -163,9 +108,9 @@ angular.module("service", [])
 		factory.changepwd = function(user) {
 			var deferred = $q.defer();
 
-			$http.post(baseUrl + "user/changepwd",{
-				pwd:user.pwd,
-				newpwd:user.newpwd
+			$http.post(baseUrl + "user/changepwd", {
+				pwd: user.pwd,
+				newpwd: user.newpwd
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -176,41 +121,102 @@ angular.module("service", [])
 
 		return factory;
 	}])
-	.factory('PopupSer',['$ionicPopup','$timeout',function($ionicPopup,$timeout) {
+	.factory('PopupSer', ['$ionicPopup', '$timeout', function($ionicPopup, $timeout) {
 		var factory = {};
 
 		factory.show = function(msg) {
 			var myPopup = $ionicPopup.show({
-        title: msg,
-        buttons: null
-      });
-     $timeout(function() {
-        myPopup.close(); 
-      }, 2000);
+				title: msg,
+				buttons: null
+			});
+			$timeout(function() {
+				myPopup.close();
+			}, 2000);
 		}
 		factory.alertErr = function(err) {
 			$ionicPopup.alert({
-        title: '请求错误',
-        template: err,
-        okText: '确认'
-      });
+				title: '请求错误',
+				template: err,
+				okText: '确认'
+			});
 		}
 		factory.alert = function(msg) {
 			$ionicPopup.alert({
-        title: '提示',
-        template: msg,
-        okText: '确认'
-      });
+				title: '提示',
+				template: msg,
+				okText: '确认'
+			});
 		}
 		factory.confirm = function(msg) {
 			return $ionicPopup.confirm({
-        title: '提示',
-        template: msg,
-        cancelText: '取消',
-        okText: '确认',
-      });
+				title: '提示',
+				template: msg,
+				cancelText: '取消',
+				okText: '确认',
+			});
 		}
 
 		return factory;
 	}])
-	;
+	.factory('CommonSer', ['$http', '$q', 'baseUrl',
+		function($http, $q, baseUrl) {
+
+			var factory = {};
+
+			factory.getList = function(url_type, keyword, page, limit) {
+				var deferred = $q.defer();
+				var start = page * limit;
+				$http.get(baseUrl + url_type + "/result", {
+					params: {
+						keyword: keyword,
+						page: page,
+						start: start,
+						limit: limit
+					}
+				}).success(function(data) {
+					deferred.resolve(data);
+				}).error(function(err) {
+					deferred.reject(err);
+				});
+				return deferred.promise;
+			}
+			factory.delItem = function(url_type, id) {
+				console.log(id)
+
+				var deferred = $q.defer();
+				$http.delete(baseUrl + url_type + '/list/del', {
+					params: {
+						id: id
+					}
+				}).success(function(data) {
+					deferred.resolve(data);
+				}).error(function(err) {
+					deferred.reject(err);
+				});
+				return deferred.promise;
+			}
+			factory.detail = function(url_type, id) {
+				var deferred = $q.defer();
+				$http.get(baseUrl + url_type + '/detailmo/' + id).success(function(data) {
+					deferred.resolve(data);
+				}).error(function(err) {
+					deferred.reject(err);
+				});
+				return deferred.promise;
+			}
+			return factory;
+		}
+	])
+	.factory('sessionInteceptor', [function() {
+
+		var sessionInjector = {
+			request: function(config) {
+				var token = localStorage.getItem('userid');
+				if (token) {
+					config.headers['token'] = token;
+				}
+				return config;
+			}
+		};
+		return sessionInjector;
+	}]);
