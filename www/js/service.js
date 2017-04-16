@@ -238,15 +238,15 @@ angular.module("service", [])
 	}])
 	.factory('BondSer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
 		var factory = {};
-		factory.save = function(payment) {
+		factory.save = function(bond) {
 
 			var deferred = $q.defer();
 			$http.post(baseUrl + 'bond/savemo', {
-				type: payment.type,
-				name: payment.name,
-				product_type: payment.product_type,
-				price: payment.price,
-				remark: payment.remark
+				name: bond.name,
+				code: bond.code,
+				purchase: bond.price,
+				yield: bond.yield,
+				remark: bond.remark
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -258,15 +258,15 @@ angular.module("service", [])
 	}])
 	.factory('BorrowSer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
 		var factory = {};
-		factory.save = function(payment) {
+		factory.save = function(borrow) {
 
 			var deferred = $q.defer();
 			$http.post(baseUrl + 'borrowing/savemo', {
-				type: payment.type,
-				name: payment.name,
-				product_type: payment.product_type,
-				price: payment.price,
-				remark: payment.remark
+				type: borrow.type,
+				other: borrow.other,
+				telphone: borrow.telphone,
+				price: borrow.price,
+				remark: borrow.remark
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -278,15 +278,15 @@ angular.module("service", [])
 	}])
 	.factory('ShareSer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
 		var factory = {};
-		factory.save = function(payment) {
+		factory.save = function(share) {
 
 			var deferred = $q.defer();
 			$http.post(baseUrl + 'share/savemo', {
-				type: payment.type,
-				name: payment.name,
-				product_type: payment.product_type,
-				price: payment.price,
-				remark: payment.remark
+				name: share.name,
+				count: share.count,
+				first_price: share.first_price,
+				last_price: share.last_price,
+				remark: share.remark
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -302,11 +302,10 @@ angular.module("service", [])
 
 			var deferred = $q.defer();
 			$http.post(baseUrl + 'wishlist/savemo', {
-				type: payment.type,
-				name: payment.name,
-				product_type: payment.product_type,
-				price: payment.price,
-				remark: payment.remark
+				name: wish.name,
+				product_type: wish.product_type,
+				price: wish.price,
+				remark: wish.remark
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {

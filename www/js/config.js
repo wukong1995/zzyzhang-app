@@ -54,7 +54,7 @@ angular.module('configRouter', [])
 			})
 			.state('app.user.detail', {
 				url: '/detail',
-				cache:false ,
+				cache: false,
 				views: {
 					'menuContent@app': {
 						templateUrl: 'templates/account/detail.html'
@@ -80,7 +80,7 @@ angular.module('configRouter', [])
 			})
 			.state('app.pay', {
 				url: '/pay',
-				cache:false,
+				cache: false,
 				views: {
 					'menuContent': {
 						templateUrl: 'templates/payment/list.html',
@@ -107,11 +107,11 @@ angular.module('configRouter', [])
 			})
 			.state('app.share', {
 				url: '/share',
-				cache:false,
+				cache: false,
 				views: {
 					'menuContent': {
 						templateUrl: 'templates/share/list.html',
-				controller: 'ShareCtrl'
+						controller: 'ShareCtrl'
 					}
 				}
 			})
@@ -128,14 +128,13 @@ angular.module('configRouter', [])
 				url: '/add',
 				views: {
 					'menuContent@app': {
-						templateUrl: 'templates/share/add.html',
-						controller: 'ShareAddCtrl'
+						templateUrl: 'templates/share/add.html'
 					}
 				}
 			})
 			.state('app.assets', {
 				url: '/assets',
-				cache:false,
+				cache: false,
 				views: {
 					'menuContent': {
 						templateUrl: 'templates/assets/list.html',
@@ -172,7 +171,7 @@ angular.module('configRouter', [])
 			})
 			.state('app.bond', {
 				url: '/bond',
-				cache:false,
+				cache: false,
 				views: {
 					'menuContent': {
 						templateUrl: 'templates/bond/list.html',
@@ -193,14 +192,13 @@ angular.module('configRouter', [])
 				url: '/add',
 				views: {
 					'menuContent@app': {
-						templateUrl: 'templates/bond/add.html',
-						controller: 'BondAddCtrl'
+						templateUrl: 'templates/bond/add.html'
 					}
 				}
 			})
 			.state('app.borrow', {
 				url: '/borrow',
-				cache:false,
+				cache: false,
 				views: {
 					'menuContent': {
 						templateUrl: 'templates/borrow/list.html',
@@ -221,14 +219,13 @@ angular.module('configRouter', [])
 				url: '/add',
 				views: {
 					'menuContent@app': {
-						templateUrl: 'templates/borrow/add.html',
-						controller: 'BonrrowAddCtrl'
+						templateUrl: 'templates/borrow/add.html'
 					}
 				}
 			})
 			.state('app.wish', {
 				url: '/wish',
-				cache:false,
+				cache: false,
 				views: {
 					'menuContent': {
 						templateUrl: 'templates/wish/list.html',

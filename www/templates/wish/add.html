@@ -1,5 +1,43 @@
-<ion-view view-title="Search">
-  <ion-content>
-    <h1>心愿单增加</h1>
+<ion-view view-title=''>
+  <ion-nav-title>
+    <h1 class="title">{{wish._id? '修改心愿':'增加心愿'}}</h1>
+	</ion-nav-title>
+
+  <ion-content scroll="true" overflow-scroll="false" >
+     <form ng-submit="doSubmit()">
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">名字</span>
+          <input type="text" placeholder="名字" ng-model="wish.name">
+        </label>
+        <label class="item item-input item-select">
+          <span class="input-label">类型</span>
+          <select ng-model="wish.product_type">
+            <option value="饮食">饮食</option>
+            <option value="服装" >服装</option>
+            <option value="交通">交通</option>
+            <option value="水电">水电</option>
+            <option value="通讯">通讯</option>
+            <option value="日用品">日用品</option>
+            <option value="旅游">旅游</option>
+            <option value="保险">保险</option>
+            <option value="其他">其他</option>
+          </select>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">价格</span>
+          <input type="text" placeholder="价格" ng-model="wish.price">
+        </label>
+        <label class="item item-input item-stacked-label">
+        	<span class="input-label">备注</span>
+    			<textarea placeholder="描述一下~" ng-model="wish.remark"></textarea>
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">确定</button>
+        </label>
+      </div>
+    </form>
   </ion-content>
+
+
 </ion-view>

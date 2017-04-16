@@ -1,7 +1,7 @@
 <ion-view view-title="股票列表">
 
   <ion-nav-buttons side="right">
-        <a class="button button-clear button-icon ion-plus-round" ui-sref="app.pay.add"></a>
+        <a class="button button-clear button-icon ion-plus-round" ui-sref="app.share.add"></a>
     </ion-nav-buttons>
 
   <ion-content overflow-scroll="false">
@@ -26,10 +26,7 @@
                            ng-click="onItemDelete(item)">
           删除
         </ion-option-button>
-        <ion-option-button class="button-assertive"
-                           ng-click="edit(item.id)">
-          编辑
-        </ion-option-button>
+        
         <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
       </ion-item>
     </ion-list>

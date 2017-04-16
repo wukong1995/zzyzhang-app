@@ -1,5 +1,37 @@
-<ion-view view-title="Search">
-  <ion-content>
-    <h1>股票增加</h1>
+<ion-view view-title='增加股票'>
+  <ion-nav-title>
+    <h1 class="title">增加股票</h1>
+	</ion-nav-title>
+
+  <ion-content scroll="true" overflow-scroll="false" ng-controller="ShareAddCtrl">
+    <form ng-submit="doSubmit()">
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">名字</span>
+          <input type="text" placeholder="名字" ng-model="share.name">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">股数</span>
+          <input type="text" placeholder="股数" ng-model="share.count">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">买入价格</span>
+          <input type="text" placeholder="买入价格" ng-model="share.first_price">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">卖出价格</span>
+          <input type="text" placeholder="卖出价格" ng-model="share.last_price">
+        </label>
+        <label class="item item-input item-stacked-label">
+        	<span class="input-label">备注</span>
+    			<textarea placeholder="描述一下~" ng-model="share.remark"></textarea>
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">确定</button>
+        </label>
+      </div>
+    </form>
   </ion-content>
+
+
 </ion-view>

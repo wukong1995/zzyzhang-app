@@ -164,8 +164,8 @@ angular.module('starter.controllers', [])
         });
     }
   ])
-  .controller('PayAddCtrl', ['$scope', '$ionicLoading', '$ionicTabsDelegate', '$location', 'PaySer', 'PopupSer',
-    function($scope, $ionicLoading, $ionicTabsDelegate, $location, PaySer, PopupSer) {
+  .controller('PayAddCtrl', ['$scope', '$ionicTabsDelegate', '$location', 'PaySer', 'PopupSer',
+    function($scope, $ionicTabsDelegate, $location, PaySer, PopupSer) {
       $scope.payment = {
         type: 0,
         product_type: '工资'
@@ -281,16 +281,23 @@ angular.module('starter.controllers', [])
         });
     }
   ])
-  .controller('ShareAddCtrl', ['$scope', '$stateParams', '$timeout', '$location', function($scope, $stateParams, $timeout, $location) {
-    $scope.title = '收支增加';
-    $scope.doLogin = function() {
-      console.log('Doing login', $scope.loginData);
+  .controller('ShareAddCtrl', ['$scope', '$location', 'ShareSer', 'PopupSer',
+    function($scope, $location, ShareSer, PopupSer) {
 
-      $timeout(function() {
-        $location.path('/app/pay/detail/0');
-      }, 1000);
-    };
-  }])
+      $scope.doSubmit = function() {
+        ShareSer.save($scope.share).then(function(res) {
+          if (res.success == 0) {
+            PopupSer.show(res.message);
+          } else {
+            PopupSer.show('增加成功');
+            $location.path('/app/share/detail/' + res.id);
+          }
+        }, function(err) {
+          PopupSer.alertErr(err);
+        });
+      };
+    }
+  ])
   .controller('BorrowCtrl', ['$scope', '$ionicLoading', '$location', 'Const', 'PopupSer', 'CommonSer',
     function($scope, $ionicLoading, $location, Const, PopupSer, CommonSer) {
       // 初始化参数
@@ -369,16 +376,43 @@ angular.module('starter.controllers', [])
         });
     }
   ])
-  .controller('BorrowAddCtrl', ['$scope', '$stateParams', '$timeout', '$location', function($scope, $stateParams, $timeout, $location) {
-    $scope.title = '收支增加';
-    $scope.doLogin = function() {
-      console.log('Doing login', $scope.loginData);
+  .controller('BorrowAddCtrl', ['$scope', '$ionicTabsDelegate', '$location', 'BorrowSer', 'PopupSer',
+    function($scope, $ionicTabsDelegate, $location, BorrowSer, PopupSer) {
+      $scope.borrow = {
+        type: 0
+      };
+      $scope.borrow1 = {
+        type: 1
+      };
+      $scope.doSubmit = function() {
 
-      $timeout(function() {
-        $location.path('/app/pay/detail/0');
-      }, 1000);
-    };
-  }])
+        if ($ionicTabsDelegate.selectedIndex() == 0) {
+          BorrowSer.save($scope.borrow).then(function(res) {
+            if (res.success == 0) {
+              PopupSer.show(res.message);
+            } else {
+              PopupSer.show('增加成功');
+              $location.path('/app/borrow/detail/' + res.id);
+            }
+          }, function(err) {
+            PopupSer.alertErr(err);
+          });
+        } else {
+          BorrowSer.save($scope.borrow1).then(function(res) {
+            if (res.success == 0) {
+              PopupSer.show(res.message);
+            } else {
+              PopupSer.show('增加成功');
+              $location.path('/app/borrow/detail/' + res.id);
+            }
+          }, function(err) {
+            PopupSer.alertErr(err);
+          });
+        }
+
+      };
+    }
+  ])
   .controller('BondCtrl', ['$scope', '$ionicLoading', '$location', 'Const', 'PopupSer', 'CommonSer',
     function($scope, $ionicLoading, $location, Const, PopupSer, CommonSer) {
       // 初始化参数
@@ -457,16 +491,24 @@ angular.module('starter.controllers', [])
         });
     }
   ])
-  .controller('BondAddCtrl', ['$scope', '$stateParams', '$timeout', '$location', function($scope, $stateParams, $timeout, $location) {
-    $scope.title = '收支增加';
-    $scope.doLogin = function() {
-      console.log('Doing login', $scope.loginData);
+  .controller('BondAddCtrl', ['$scope', '$location', 'BondSer', 'PopupSer',
+    function($scope, $location, BondSer, PopupSer) {
+      $scope.title = '收支增加';
 
-      $timeout(function() {
-        $location.path('/app/pay/detail/0');
-      }, 1000);
-    };
-  }])
+      $scope.doSubmit = function() {
+        BondSer.save($scope.bond).then(function(res) {
+          if (res.success == 0) {
+            PopupSer.show(res.message);
+          } else {
+            PopupSer.show('增加成功');
+            $location.path('/app/bond/detail/' + res.id);
+          }
+        }, function(err) {
+          PopupSer.alertErr(err);
+        });
+      };
+    }
+  ])
   .controller('AssetsCtrl', ['$scope', '$ionicLoading', '$location', 'Const', 'PopupSer', 'CommonSer',
     function($scope, $ionicLoading, $location, Const, PopupSer, CommonSer) {
       // 初始化参数
@@ -639,6 +681,10 @@ angular.module('starter.controllers', [])
         $scope.loadData();
       }
 
+      $scope.edit = function(id) {
+        $location.path('/app/wish/edit/' + id);
+      }
+
       $scope.onItemDelete = function(item) {
         // 一个确认对话框
         var confirmPopup = PopupSer.confirm('确认删除这条记录？');
@@ -699,30 +745,55 @@ angular.module('starter.controllers', [])
         });
     }
   ])
-  .controller('WishAddCtrl', ['$scope', '$stateParams', '$timeout', '$location', function($scope, $stateParams, $timeout, $location) {
-    $scope.title = '收支增加';
-    $scope.doLogin = function() {
-      console.log('Doing login', $scope.loginData);
+  .controller('WishAddCtrl', ['$scope', '$location', 'WishSer', 'PopupSer',
+    function($scope, $location, WishSer, PopupSer) {
+      $scope.wish = {
+        product_type: '饮食'
+      };
+      $scope.doSubmit = function() {
+        WishSer.save($scope.wish).then(function(res) {
+          if (res.success == 0) {
+            PopupSer.show(res.message);
+          } else {
+            PopupSer.show('增加成功');
+            $location.path('/app/wish/detail/' + res.id);
+          }
+        }, function(err) {
+          PopupSer.alertErr(err);
+        });
+      }
+    }
+  ])
+  .controller('WishEditCtrl', ['$scope', '$location', '$stateParams', 'PopupSer', 'Const', 'CommonSer', 'WishSer',
+    function($scope, $location, $stateParams, PopupSer, Const, CommonSer, WishSer) {
+      $scope.id = $stateParams.id;
 
-      $timeout(function() {
-        $location.path('/app/pay/detail/0');
-      }, 1000);
-    };
-  }])
-  .controller('WishEditCtrl', ['$scope', '$stateParams', 'WishSer', function($scope, $stateParams, WishSer) {
-    $scope.id = $stateParams.id;
+      CommonSer.detail(Const.wish, $scope.id)
+        .then(function(res) {
+          if (res.success == 1) {
+            $scope.wish = res.data;
+          } else {
+            PopupSer.alert('后台查询错误');
+          }
 
-    shareSer.detail($scope.id).then(function(data) {
-      $scope.sharement = data.sharement;
+        }, function(err) {
+          PopupSer.alertErr(err);
+        });
 
-    }, function(err) {
-      $ionicPopup.alert({
-        title: '请求错误',
-        template: err,
-        okText: '确认'
-      });
-    });
-  }])
+      $scope.doSubmit = function() {
+        WishSer.save($scope.wish).then(function(res) {
+          if (res.success == 0) {
+            PopupSer.show(res.message);
+          } else {
+            PopupSer.show('修改成功');
+            $location.path('/app/wish/detail/' + res.id);
+          }
+        }, function(err) {
+          PopupSer.alertErr(err);
+        });
+      };
+    }
+  ])
   .controller('UserCtrl', ['$scope', '$location', 'PopupSer', function($scope, $location, PopupSer) {
 
     $scope.show = function(item) {
