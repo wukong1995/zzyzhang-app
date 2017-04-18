@@ -8,7 +8,7 @@
 	    <ion-list class="userdetail">
 	    	<ion-item class="item">用户名<span class="item-note">{{user.name}}</span></ion-item>
 
-	    	<form ng-submit="doChange()">
+	    	<form ng-submit="doChange()" name="changeForm">
 	    		<div class="list">
 	    			<div class="item item-divider">基本信息</div>
 		        <label class="item item-input item-stacked-label">
@@ -24,8 +24,8 @@
 		        <div class="item item-divider">其他信息</div>
 		        <label class="item item-input item-stacked-label">
 		          <span class="input-label">真实姓名</span>
-		          <input type="text" name="email" 
-		          ng-model="user.real_name" >
+		          <input type="text" name="real_name" 
+		          ng-model="user.real_name" ng-minlength="1" ng-maxlength="20">
 		        </label>
 
 		        <label class="item item-input item-select">
@@ -50,7 +50,8 @@
 		         	<textarea name="signature" ng-model="user.signature" placeholder="个性签名"></textarea>
 		        </label>
 		        <label class="item">
-		          <button class="button button-block button-positive" type="submit">确定</button>
+		          <button class="button button-block button-positive" type="submit"
+		           ng-disabled="changeForm.$invalid">确定</button>
 		        </label>
 		      </div>
 	    	</form>

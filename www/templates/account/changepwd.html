@@ -7,7 +7,7 @@
   	
 		<div style="padding: 0 5px;">
 	    <ion-list class="changepwd">
-	    	<form  ng-submit="doChange()">
+	    	<form  ng-submit="doChange()" name="pwdForm">
 		    	<label class="item item-input">
 	          <span class="input-label">原密码</span>
 	          <input type="password" name="password" 
@@ -21,10 +21,11 @@
 	        <label class="item item-input">
 	          <span class="input-label">确认密码</span>
 	          <input type="password" name="password2" 
-	          ng-model="user.confirpwd" ng-required="true" ng-pattern="/[a-zA-Z0-9]{6,16}/">
+	          ng-model="user.confirpwd" ng-required="true" ng-pattern="/[a-zA-Z0-9]{6,16}/" pw-check="password">
 	        </label>
 	        <label class="item">
-	          <button class="button button-block button-positive" type="submit">确定</button>
+	          <button class="button button-block button-positive" type="submit"
+	           ng-disabled="pwdForm.$invalid">确定</button>
 	        </label>
         </form>
       </ion-list>
