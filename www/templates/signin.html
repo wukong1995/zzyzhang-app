@@ -4,17 +4,18 @@
   </ion-header-bar>
 
   <ion-content scroll="true" overflow-scroll="false" ng-controller="SigninCtrl">
-    <form ng-submit="doLogin()">
+    <form ng-submit="doLogin()" name="signinForm">
       <div class="list list-inset">
         <label class="item item-input">
           <input type="text" name="username" ng-model="user.name" placeholder="用户名" ng-required="true" ng-minlength="4" ng-maxinlength="16">
         </label>
         <label class="item item-input">
-          <input type="password" name="password" ng-model="user.password" placeholder="密码"  ng-required="true" ng-pattern="/[a-zA-Z0-9]{6,16}/">
+          <input type="password" name="password" ng-model="user.password" placeholder="密码" ng-required="true" ng-pattern="/[a-zA-Z0-9]{6,16}/">
         </label>
       </div>
       <div class="padding">
-        <button class="button button-block button-positive" type="submit">登录</button>
+        <button class="button button-block button-positive" type="submit"
+        ng-disabled="signinForm.$invalid">登录</button>
       </div>
     </form>
 

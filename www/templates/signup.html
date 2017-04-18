@@ -4,7 +4,7 @@
   </ion-header-bar>
 
   <ion-content scroll="true" overflow-scroll="false" ng-controller="SignupCtrl">
-    <form ng-submit="doSignup()">
+    <form ng-submit="doSignup()"  name="signupForm">
       <div class="list">
         <label class="item item-input">
           <span class="input-label">用户名</span>
@@ -29,10 +29,11 @@
          <label class="item item-input">
           <span class="input-label">确认密码</span>
           <input type="password" name="password2" 
-          ng-model="user.confirpwd" ng-required="true" ng-pattern="/[a-zA-Z0-9]{6,16}/">
+          ng-model="user.confirpwd" ng-required="true" ng-pattern="/[a-zA-Z0-9]{6,16}/" pw-check="password">
         </label>
         <label class="item">
-          <button class="button button-block button-positive" type="submit">注册</button>
+          <button class="button button-block button-positive" type="submit"
+          ng-disabled="signupForm.$invalid">创建帐户</button>
         </label>
       </div>
     </form>

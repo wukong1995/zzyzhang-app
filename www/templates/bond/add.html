@@ -4,30 +4,35 @@
 	</ion-nav-title>
 
   <ion-content scroll="true" overflow-scroll="false" ng-controller="BondAddCtrl">
-    <form ng-submit="doSubmit()">
+    <form ng-submit="doSubmit()" name="bondForm">
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">名字</span>
-          <input type="text" placeholder="名字" ng-model="bond.name">
+          <input type="text" placeholder="名字" ng-model="bond.name"
+          ng-minlength="1" ng-maxlength="20" ng-required="true">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">代码</span>
-          <input type="text" placeholder="代码" ng-model="bond.code">
+          <input type="number" placeholder="代码" ng-model="bond.code"
+          ng-pattern="/^[\d]{6}$/" ng-required="true">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">价格</span>
-          <input type="text" placeholder="价格" ng-model="bond.price">
+          <input type="number" placeholder="价格" ng-model="bond.price"
+          ng-required="true" min="0.1" >
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">收益率</span>
-          <input type="text" placeholder="收益率" ng-model="bond.yield">
+          <input type="number" placeholder="收益率" ng-model="bond.yield"
+          ng-required="true" min="0" max="100" >
         </label>
         <label class="item item-input item-stacked-label">
         	<span class="input-label">备注</span>
     			<textarea placeholder="描述一下~" ng-model="bond.remark"></textarea>
         </label>
         <label class="item">
-          <button class="button button-block button-positive" type="submit">确定</button>
+          <button class="button button-block button-positive" type="submit"
+          ng-disabled="bondForm.$invalid">确定</button>
         </label>
       </div>
     </form>

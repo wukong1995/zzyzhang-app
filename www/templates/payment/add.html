@@ -7,15 +7,16 @@
 		  <ion-tab title="收入" >
 		    <!-- 标签 1 内容 -->
 		    <ion-content style="top: 86px" scroll="true" overflow-scroll="false" >
-			    <form ng-submit="doSubmit()">
+			    <form ng-submit="doSubmit()" name="payForm">
 			      <div class="list">
 			        <label class="item item-input item-stacked-label">
 			          <span class="input-label">名字</span>
-			          <input type="text" placeholder="名字" ng-model="payment.name">
+			          <input type="text" placeholder="名字" ng-model="payment.name"
+			          ng-minlength="1" ng-maxlength="20" ng-required="true">
 			        </label>
 			        <label class="item item-input item-select">
 			          <span class="input-label">类型</span>
-			          <select ng-model="payment.product_type">
+			          <select ng-model="payment.product_type" ng-required="true">
 			            <option value="奖金">奖金</option>
 			            <option value="工资">工资</option>
 			            <option value="其他">其他</option>
@@ -23,14 +24,16 @@
 			        </label>
 			        <label class="item item-input item-stacked-label">
 			          <span class="input-label">价格</span>
-			          <input type="text" placeholder="价格" ng-model="payment.price">
+			          <input type="number" placeholder="价格" ng-model="payment.price"
+			          ng-required="true"  min="0.1">
 			        </label>
 			        <label class="item item-input item-stacked-label">
 			        	<span class="input-label">备注</span>
 			    			<textarea placeholder="描述一下~" ng-model="payment.remark"></textarea>
 			        </label>
 			        <label class="item">
-			          <button class="button button-block button-positive" type="submit">确定</button>
+			          <button class="button button-block button-positive" type="submit"
+			          ng-disabled="payForm.$invalid">确定</button>
 			        </label>
 			      </div>
 			    </form>
@@ -39,15 +42,16 @@
 		 
 		  <ion-tab title="支出">
 			  <ion-content style="top: 86px" scroll="true" overflow-scroll="false" >
-			    <form ng-submit="doSubmit()">
+			    <form ng-submit="doSubmit()" name="payForm1">
 			      <div class="list">
 			        <label class="item item-input item-stacked-label">
 			          <span class="input-label">名字</span>
-			          <input type="text" placeholder="名字" ng-model="payment1.name">
+			          <input type="text" placeholder="名字" ng-model="payment1.name"
+			          ng-required="true" ng-minlength="2" ng-maxlength="20">
 			        </label>
 			        <label class="item item-input item-select">
 			          <span class="input-label">类型</span>
-			          <select ng-model="payment1.product_type">
+			          <select ng-model="payment1.product_type" ng-required="true">
 			            <option value="饮食">饮食</option>
 			            <option value="服装" >服装</option>
 			            <option value="交通">交通</option>
@@ -61,14 +65,15 @@
 			        </label>
 			        <label class="item item-input item-stacked-label">
 			          <span class="input-label">价格</span>
-			          <input type="text" placeholder="价格" ng-model="payment1.price">
+			          <input type="number" placeholder="价格" ng-model="payment1.price"
+			          ng-required="true" ng-pattern="/^\d+(\.\d+)?$/" min="0.1">
 			        </label>
 			        <label class="item item-input item-stacked-label">
 			        	<span class="input-label">备注</span>
 			    			<textarea placeholder="描述一下~" ng-model="payment1.remark"></textarea>
 			        </label>
 			        <label class="item">
-			          <button class="button button-block button-positive" type="submit">确定</button>
+			          <button class="button button-block button-positive" type="submit" ng-disabled="payForm1.$invalid">确定</button>
 			        </label>
 			      </div>
 			    </form>

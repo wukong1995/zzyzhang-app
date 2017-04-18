@@ -4,7 +4,7 @@
   </ion-header-bar>
 
   <ion-content scroll="true" overflow-scroll="false" ng-controller="ForgetpwdCtrl">
-    <form ng-submit="doForgetpwd()">
+    <form ng-submit="doForgetpwd()" name="forgetForm">
       <div class="list  list-inset">
         <label class="item item-input">
           <input type="text" name="username" ng-model="user.name" 
@@ -20,7 +20,8 @@
         </label>
       </div>
       <div class="padding">
-        <button class="button button-block button-positive" type="submit">重置密码</button>
+        <button class="button button-block button-positive" type="submit"
+        ng-disabled="forgetForm.$invalid">重置密码</button>
       </div>
     </form>
 
