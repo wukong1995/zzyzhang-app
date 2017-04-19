@@ -18,10 +18,14 @@
 		    2017-01-12
 		    <span class="item-note">3,555</span>
 		  </ion-item> -->
-      <ion-item ng-repeat="item in items" 
+      <ion-item class="item-avatar" ng-repeat="item in items track by $index" 
                 item="item"
                 ui-sref="app.borrow.detail({id:item._id})" class="item-remove-animate">
-        {{ item.other }}
+        <img ng-src="img/ru.png" ng-if="item.type == 0">
+        <img ng-src="img/chu.png" ng-if="item.type == 1">
+        <h2>{{ item.other }}</h2>
+        <p>金额：{{item.price}}</p>
+
         <ion-option-button class="button-calm"
                            ng-click="onItemDelete(item)">
           删除
