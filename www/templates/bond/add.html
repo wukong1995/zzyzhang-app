@@ -23,7 +23,7 @@
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">收益率</span>
-          <input type="number" placeholder="收益率" ng-model="bond.yield"
+          <input type="text" placeholder="收益率" ng-model="bond.yield"
           ng-required="true" ng-pattern="/^(\-)?\d+(\.\d+)?$/" >
         </label>
         <label class="item item-input item-stacked-label">
@@ -31,7 +31,7 @@
     			<textarea placeholder="描述一下~" ng-model="bond.remark"></textarea>
         </label>
         <label class="item">
-          <button class="button button-block button-positive" type="submit"
+          <button class="button button-block button-energized" type="submit"
           ng-disabled="bondForm.$invalid">确定</button>
         </label>
       </div>

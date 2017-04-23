@@ -1,0 +1,16 @@
+<ion-view view-title="意见反馈">
+	<ion-nav-title>
+    <h1 class="title">意见反馈</h1>
+	</ion-nav-title>
+  <ion-nav-buttons side="right">
+    <a class="button button-clear button-icon ion-checkmark" href="javascript:void(0);" ng-click="doSubmit()"></a>
+  </ion-nav-buttons>
+
+  <ion-content overflow-scroll="false">
+  	<p>意见反馈</p>
+    <textarea ng-model="comment" placeholder="请写下你的建议"></textarea>
+
+    <i class="icon ion-edit"></i>
+    <i class="icon ion-compose"></i>
+  </ion-content>
+</ion-view>

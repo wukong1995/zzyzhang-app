@@ -1,3 +1,6 @@
+#user-list {padding: 10% 0;border-color: #ffffff;text-align: center;background: url(../img/userbg.jpg) center center no-repeat;}
+#user-list a {background: transparent;}
+#user-list  img {width: 40%;border-radius: 50%;}
 .center {text-align: center;}
 .record .item {color:#444444;}
 .record .item h1 {color: #000000;}

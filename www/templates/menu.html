@@ -1,6 +1,6 @@
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-positive">
+    <ion-nav-bar class="bar-energized">
       <ion-nav-back-button class="button-clear">
         <i class="ion-chevron-left"></i>返回
       </ion-nav-back-button>
@@ -16,31 +16,43 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-content overflow-scroll="false">
+    <ion-content scroll="true" overflow-scroll="false">
       <ion-list>
-        <ion-item menu-close ui-sref="app.user">
-          <img ng-src="img/user.jpg" style="width: 50%;border-radius: 50%;margin-left:30%;">
+        <ion-item class="item-icon-left" menu-close ui-sref="app.user" id="user-list">
+          <img ng-src="img/user.png" >
         </ion-item>
-        <ion-item menu-close ui-sref="app.first">
+        <ion-item class="item-icon-left" menu-close ui-sref="app.first">
+          <i class="icon ion-home"></i>
           用户首页
         </ion-item>
-        <ion-item menu-close ui-sref="app.pay">
+        <ion-item class="item-icon-left" menu-close ui-sref="app.pay">
+          <i class="icon ion-document-text"></i>
           收支管理
         </ion-item>
-        <ion-item menu-close ui-sref="app.assets">
+        <ion-item class="item-icon-left" menu-close ui-sref="app.assets">
+          <i class="icon ion-social-yen"></i>
           资产管理
         </ion-item>
-        <ion-item menu-close ui-sref="app.bond">
+        <ion-item class="item-icon-left" menu-close ui-sref="app.bond">
+          <i class="icon ion-social-usd"></i>
           债券管理
         </ion-item>
-        <ion-item menu-close ui-sref="app.share">
+        <ion-item class="item-icon-left" menu-close ui-sref="app.share">
+          <i class="icon ion-arrow-graph-up-right"></i>
           股票管理
         </ion-item>
-        <ion-item menu-close ui-sref="app.borrow">
+        <ion-item class="item-icon-left" menu-close ui-sref="app.borrow">
+          <i class="icon ion-card"></i>
           借贷管理
         </ion-item>
-        <ion-item menu-close ui-sref="app.wish">
+        <ion-item class="item-icon-left" menu-close ui-sref="app.wish">
+          <i class="icon ion-heart"></i>
           心愿单
+        </ion-item>
+      </ion-list>
+      <ion-list>
+         <ion-item menu-close ui-sref="app.setting">
+          相关设置
         </ion-item>
       </ion-list>
     </ion-content>

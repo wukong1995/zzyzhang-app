@@ -259,6 +259,30 @@ angular.module('configRouter', [])
 						controller: 'WishEditCtrl'
 					}
 				}
+			})
+			.state('app.setting', {
+				url: '/setting',
+				views: {
+					'menuContent': {
+						templateUrl: 'templates/setting/index.html'
+					}
+				}
+			})
+			.state('app.setting.about', {
+				url: '/about',
+				views: {
+					'menuContent@app': {
+						templateUrl: 'templates/setting/about.html'
+					}
+				}
+			})
+			.state('app.setting.comment', {
+				url: '/comment',
+				views: {
+					'menuContent@app': {
+						templateUrl: 'templates/setting/comment.html'
+					}
+				}
 			});
 		// if none of the above states are matched, use this as the fallback
 		$urlRouterProvider.otherwise('/signin');

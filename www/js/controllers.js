@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
-  .controller('SigninCtrl', ['$scope', '$location', '$timeout', '$ionicLoading', 'PopupSer', 'LoginSer',
-    function($scope, $location, $timeout, $ionicLoading, PopupSer, LoginSer) {
+  .controller('SigninCtrl', ['$rootScope', '$scope', '$location', '$timeout', '$ionicLoading', 'PopupSer', 'LoginSer',
+    function($rootScope, $scope, $location, $timeout, $ionicLoading, PopupSer, LoginSer) {
       if (localStorage.getItem('userid')) {
         $location.path('/app/first');
       }
@@ -20,6 +20,7 @@ angular.module('starter.controllers', [])
             $ionicLoading.hide();
             PopupSer.show(res.message);
           } else {
+            $rootScope.username = $scope.user.name;
             localStorage.setItem('userid', res.user._id);
             localStorage.setItem('username', $scope.user.name);
             localStorage.setItem('password', $scope.user.password);
