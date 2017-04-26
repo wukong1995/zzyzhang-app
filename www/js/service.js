@@ -328,6 +328,44 @@ angular.module("service", [])
 		}
 		return factory;
 	}])
+	.factory('CommentSer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
+		var factory = {};
+		factory.save = function(comment) {
+
+			var deferred = $q.defer();
+			$http.post(baseUrl + 'comment/savemo', {
+				comment: comment
+			}).success(function(data) {
+				deferred.resolve(data);
+			}).error(function(err) {
+				deferred.reject(err);
+			});
+			return deferred.promise;
+		}
+		return factory;
+	}])
+	.factory('loadingInteceptor', ['$rootScope', function($rootScope) {
+
+		var loadingInjector = {
+			request: function(config) {
+				$rootScope.$broadcast('loading:show')
+				return config
+			},
+			requestError: function(rejection) {
+				$rootScope.$broadcast('loading:hide')
+				return $q.reject(rejection);
+			},
+			response: function(response) {
+				$rootScope.$broadcast('loading:hide');
+				return response;
+			},
+			responseError: function(rejection) {
+				$rootScope.$broadcast('loading:hide')
+				return $q.reject(rejection);
+			}
+		};
+		return loadingInjector;
+	}])
 	.factory('sessionInteceptor', [function() {
 
 		var sessionInjector = {

@@ -13,18 +13,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
       }
 
       // 为http 增加loading效果
-      $httpProvider.interceptors.push(function($rootScope) {
-        return {
-          request: function(config) {
-            $rootScope.$broadcast('loading:show')
-            return config
-          },
-          response: function(response) {
-            $rootScope.$broadcast('loading:hide')
-            return response
-          }
-        }
-      });
+      $httpProvider.interceptors.push('loadingInteceptor');
 
       //添加拦截器  
       $httpProvider.interceptors.push('sessionInteceptor');
@@ -55,7 +44,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
     share: 'share',
     wish: 'wishlist'
   })
-  .value('baseUrl', 'http://192.168.1.104:3000/')
+  .value('baseUrl', 'http://139.199.111.41:3000/')
 
 .run(['$ionicPlatform', '$rootScope', '$ionicLoading',
   function($ionicPlatform, $rootScope, $ionicLoading) {
@@ -72,7 +61,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
     });
     $rootScope.$on('loading:show', function() {
       $ionicLoading.show({
-        template: 'loading...'
+        template: '加载中'
       })
     });
 

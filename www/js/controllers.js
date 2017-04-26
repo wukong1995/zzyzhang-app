@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
-  .controller('SigninCtrl', ['$rootScope', '$scope', '$location', '$timeout', '$ionicLoading', 'PopupSer', 'LoginSer',
-    function($rootScope, $scope, $location, $timeout, $ionicLoading, PopupSer, LoginSer) {
+  .controller('SigninCtrl', ['$rootScope', '$scope', '$location', '$timeout', 'PopupSer', 'LoginSer',
+    function($rootScope, $scope, $location, $timeout, PopupSer, LoginSer) {
       if (localStorage.getItem('userid')) {
         $location.path('/app/first');
       }
@@ -11,15 +11,9 @@ angular.module('starter.controllers', [])
       }
 
       $scope.doLogin = function() {
-        $ionicLoading.show({
-          template: '正在登录'
-        });
         LoginSer.signin($scope.user).then(function(res) {
-          $ionicLoading.hide();
-          if (res.success == 0) {
-            $ionicLoading.hide();
-            PopupSer.show(res.message);
-          } else {
+          PopupSer.show(res.message);
+          if (res.success == 1) {
             $rootScope.username = $scope.user.name;
             localStorage.setItem('userid', res.user._id);
             localStorage.setItem('username', $scope.user.name);
@@ -27,14 +21,13 @@ angular.module('starter.controllers', [])
             $location.path('/app/first');
           }
         }, function(err) {
-          $ionicLoading.hide();
           PopupSer.alertErr(err);
         });
       };
     }
   ])
-  .controller('SignupCtrl', ['$scope', '$location', '$timeout', '$ionicLoading', 'PopupSer', 'LoginSer',
-    function($scope, $location, $timeout, $ionicLoading, PopupSer, LoginSer) {
+  .controller('SignupCtrl', ['$scope', '$location', '$timeout', 'PopupSer', 'LoginSer',
+    function($scope, $location, $timeout, PopupSer, LoginSer) {
 
       $scope.doSignup = function() {
 
@@ -42,17 +35,9 @@ angular.module('starter.controllers', [])
           PopupSer.show('两次输入密码不一致');
           return;
         }
-
-        $ionicLoading.show({
-          template: '正在注册'
-        });
         LoginSer.signup($scope.user).then(function(res) {
-          $ionicLoading.hide();
-          if (res.success == 0) {
-            $ionicLoading.hide();
-            PopupSer.show(res.message);
-          } else {
-            PopupSer.show(res.message);
+          PopupSer.show(res.message);
+          if (res.success == 0) {} else {
             $location.path('/signin');
           }
         }, function(err) {
@@ -62,15 +47,10 @@ angular.module('starter.controllers', [])
       };
     }
   ])
-  .controller('ForgetpwdCtrl', ['$scope', '$location', '$timeout', '$ionicLoading', 'PopupSer', 'LoginSer',
-    function($scope, $location, $timeout, $ionicLoading, PopupSer, LoginSer) {
+  .controller('ForgetpwdCtrl', ['$scope', '$location', 'PopupSer', 'LoginSer',
+    function($scope, $location, PopupSer, LoginSer) {
       $scope.doForgetpwd = function() {
-
-        $ionicLoading.show({
-          template: '正在重置'
-        });
         LoginSer.forgetpwd($scope.user).then(function(res) {
-          $ionicLoading.hide();
           if (res.success == 0) {
             PopupSer.show(res.message);
           } else {
@@ -78,7 +58,6 @@ angular.module('starter.controllers', [])
             $location.path('/signin');
           }
         }, function(err) {
-          $ionicLoading.hide();
           PopupSer.alertErr(err);
         });
       };
@@ -180,7 +159,7 @@ angular.module('starter.controllers', [])
         if ($ionicTabsDelegate.selectedIndex() == 0) {
           PaySer.save($scope.payment).then(function(res) {
             if (res.success == 0) {
-              PopupSer.show(res.message);
+              PopupSer.show(res.msg);
             } else {
               PopupSer.show('增加成功');
               $location.path('/app/pay/detail/' + res.id);
@@ -191,7 +170,7 @@ angular.module('starter.controllers', [])
         } else {
           PaySer.save($scope.payment1).then(function(res) {
             if (res.success == 0) {
-              PopupSer.show(res.message);
+              PopupSer.show(res.msg);
             } else {
               PopupSer.show('增加成功');
               $location.path('/app/pay/detail/' + res.id);
@@ -288,7 +267,7 @@ angular.module('starter.controllers', [])
       $scope.doSubmit = function() {
         ShareSer.save($scope.share).then(function(res) {
           if (res.success == 0) {
-            PopupSer.show(res.message);
+            PopupSer.show(res.msg);
           } else {
             PopupSer.show('增加成功');
             $location.path('/app/share/detail/' + res.id);
@@ -390,7 +369,7 @@ angular.module('starter.controllers', [])
         if ($ionicTabsDelegate.selectedIndex() == 0) {
           BorrowSer.save($scope.borrow).then(function(res) {
             if (res.success == 0) {
-              PopupSer.show(res.message);
+              PopupSer.show(res.msg);
             } else {
               PopupSer.show('增加成功');
               $location.path('/app/borrow/detail/' + res.id);
@@ -401,7 +380,7 @@ angular.module('starter.controllers', [])
         } else {
           BorrowSer.save($scope.borrow1).then(function(res) {
             if (res.success == 0) {
-              PopupSer.show(res.message);
+              PopupSer.show(res.msg);
             } else {
               PopupSer.show('增加成功');
               $location.path('/app/borrow/detail/' + res.id);
@@ -499,7 +478,7 @@ angular.module('starter.controllers', [])
       $scope.doSubmit = function() {
         BondSer.save($scope.bond).then(function(res) {
           if (res.success == 0) {
-            PopupSer.show(res.message);
+            PopupSer.show(res.msg);
           } else {
             PopupSer.show('增加成功');
             $location.path('/app/bond/detail/' + res.id);
@@ -601,7 +580,7 @@ angular.module('starter.controllers', [])
       $scope.doSubmit = function() {
         AssetsSer.save($scope.assets).then(function(res) {
           if (res.success == 0) {
-            PopupSer.show(res.message);
+            PopupSer.show(res.msg);
           } else {
             PopupSer.show('增加成功');
             $location.path('/app/assets/detail/' + res.id);
@@ -631,7 +610,7 @@ angular.module('starter.controllers', [])
       $scope.doSubmit = function() {
         AssetsSer.save($scope.assets).then(function(res) {
           if (res.success == 0) {
-            PopupSer.show(res.message);
+            PopupSer.show(res.msg);
           } else {
             PopupSer.show('修改成功');
             $location.path('/app/assets/detail/' + res.id);
@@ -754,7 +733,7 @@ angular.module('starter.controllers', [])
       $scope.doSubmit = function() {
         WishSer.save($scope.wish).then(function(res) {
           if (res.success == 0) {
-            PopupSer.show(res.message);
+            PopupSer.show(res.msg);
           } else {
             PopupSer.show('增加成功');
             $location.path('/app/wish/detail/' + res.id);
@@ -784,7 +763,7 @@ angular.module('starter.controllers', [])
       $scope.doSubmit = function() {
         WishSer.save($scope.wish).then(function(res) {
           if (res.success == 0) {
-            PopupSer.show(res.message);
+            PopupSer.show(res.msg);
           } else {
             PopupSer.show('修改成功');
             $location.path('/app/wish/detail/' + res.id);
@@ -808,8 +787,8 @@ angular.module('starter.controllers', [])
       });
     };
   }])
-  .controller('UserDetailCtrl', ['$scope', '$ionicLoading', '$ionicPopup', 'UserSer',
-    function($scope, $ionicLoading, $ionicPopup, UserSer) {
+  .controller('UserDetailCtrl', ['$scope', '$ionicLoading', '$ionicPopup', 'PopupSer', 'UserSer',
+    function($scope, $ionicLoading, $ionicPopup, PopupSer, UserSer) {
       $ionicLoading.show({
         template: '正在获得数据'
       });
@@ -817,7 +796,7 @@ angular.module('starter.controllers', [])
       UserSer.detail().then(function(res) {
         $ionicLoading.hide();
         if (res.success == 0) {
-          PopupSer.show(res.message);
+          PopupSer.show(res.msg);
         } else {
           $scope.user = res.user;
         }
@@ -826,14 +805,10 @@ angular.module('starter.controllers', [])
       });
     }
   ])
-  .controller('UserChangeCtrl', ['$scope', '$location', '$ionicLoading', 'ionicDatePicker', 'UserSer', 'PopupSer',
-    function($scope, $location, $ionicLoading, ionicDatePicker, UserSer, PopupSer) {
-      $ionicLoading.show({
-        template: '正在获得数据'
-      });
+  .controller('UserChangeCtrl', ['$scope', '$location', 'ionicDatePicker', 'UserSer', 'PopupSer',
+    function($scope, $location, ionicDatePicker, UserSer, PopupSer) {
 
       UserSer.detail().then(function(res) {
-        $ionicLoading.hide();
         if (res.success == 0) {
           PopupSer.show(res.message);
         } else {
@@ -854,30 +829,20 @@ angular.module('starter.controllers', [])
       };
 
       $scope.doChange = function() {
-
-        $ionicLoading.show({
-          template: '正在修改'
-        });
         UserSer.changepro($scope.user).then(function(res) {
-          $ionicLoading.hide();
-
-          if (res.success == 0) {
-            $ionicLoading.hide();
-            PopupSer.show(res.msg);
-          } else {
-            PopupSer.show(res.msg);
+          PopupSer.show(res.message);
+          if (res.success == 1) {
             $location.path('/app/user/detail');
           }
         }, function(err) {
-          $ionicLoading.hide();
           PopupSer.alertErr(err);
         });
       };
 
     }
   ])
-  .controller('UserChangepwdCtrl', ['$scope', '$ionicLoading', '$location', 'UserSer', 'PopupSer',
-    function($scope, $ionicLoading, $location, UserSer, PopupSer) {
+  .controller('UserChangepwdCtrl', ['$scope', '$location', 'UserSer', 'PopupSer',
+    function($scope, $location, UserSer, PopupSer) {
 
       $scope.doChange = function() {
 
@@ -885,21 +850,28 @@ angular.module('starter.controllers', [])
           PopupSer.show('两次输入密码不一致');
           return;
         }
-        $ionicLoading.show({
-          template: '正在修改'
-        });
         UserSer.changepwd($scope.user).then(function(res) {
-          $ionicLoading.hide();
-          if (res.success == 0) {
-            $ionicLoading.hide();
-            PopupSer.show(res.message);
-          } else {
-            PopupSer.show(res.message);
+          PopupSer.show(res.message);
+          if (res.success == 0) {} else {
             localStorage.removeItem('userid');
             $location.path('/signin');
           }
         }, function(err) {
-          $ionicLoading.hide();
+          PopupSer.alertErr(err);
+        });
+      };
+    }
+  ])
+  .controller('CommentCtr', ['$scope', 'PopupSer', 'CommentSer',
+    function($scope, PopupSer, CommentSer) {
+
+      $scope.doSubmit = function() {
+        CommentSer.save($scope.comment).then(function(res) {
+          PopupSer.show(res.msg);
+          if (res.success == 1) {
+            $scope.comment = '';
+          }
+        }, function(err) {
           PopupSer.alertErr(err);
         });
       };
