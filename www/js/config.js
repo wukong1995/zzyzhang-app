@@ -285,5 +285,5 @@ angular.module('configRouter', [])
 				}
 			});
 		// if none of the above states are matched, use this as the fallback
-		$urlRouterProvider.otherwise('/signin');
+		$urlRouterProvider.otherwise('/app/first');
 	});

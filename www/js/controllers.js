@@ -1,9 +1,6 @@
 angular.module('starter.controllers', [])
   .controller('SigninCtrl', ['$rootScope', '$scope', '$location', '$timeout', 'PopupSer', 'LoginSer',
     function($rootScope, $scope, $location, $timeout, PopupSer, LoginSer) {
-      if (localStorage.getItem('userid')) {
-        $location.path('/app/first');
-      }
 
       $scope.user = {
         name: localStorage.getItem('username') || '',
@@ -782,7 +779,7 @@ angular.module('starter.controllers', [])
       confirmPopup.then(function(res) {
         if (res) {
           localStorage.removeItem('userid');
-          $location.path('/');
+          $location.path('/signin');
         }
       });
     };
