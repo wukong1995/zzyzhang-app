@@ -334,7 +334,7 @@ angular.module("service", [])
 
 			var deferred = $q.defer();
 			$http.post(baseUrl + 'comment/savemo', {
-				comment: comment
+				remark: comment
 			}).success(function(data) {
 				deferred.resolve(data);
 			}).error(function(err) {
@@ -344,28 +344,30 @@ angular.module("service", [])
 		}
 		return factory;
 	}])
-	.factory('loadingInteceptor', ['$rootScope', function($rootScope) {
+	.factory('loadingInteceptor', ['$rootScope', '$q',
+		function($rootScope, $q) {
 
-		var loadingInjector = {
-			request: function(config) {
-				$rootScope.$broadcast('loading:show')
-				return config
-			},
-			requestError: function(rejection) {
-				$rootScope.$broadcast('loading:hide')
-				return $q.reject(rejection);
-			},
-			response: function(response) {
-				$rootScope.$broadcast('loading:hide');
-				return response;
-			},
-			responseError: function(rejection) {
-				$rootScope.$broadcast('loading:hide')
-				return $q.reject(rejection);
-			}
-		};
-		return loadingInjector;
-	}])
+			var loadingInjector = {
+				request: function(config) {
+					$rootScope.$broadcast('loading:show')
+					return config;
+				},
+				requestError: function(rejection) {
+					$rootScope.$broadcast('loading:hide')
+					return $q.reject(rejection);
+				},
+				response: function(response) {
+					$rootScope.$broadcast('loading:hide');
+					return response;
+				},
+				responseError: function(rejection) {
+					$rootScope.$broadcast('loading:hide')
+					return $q.reject(rejection);
+				}
+			};
+			return loadingInjector;
+		}
+	])
 	.factory('sessionInteceptor', [function() {
 
 		var sessionInjector = {
