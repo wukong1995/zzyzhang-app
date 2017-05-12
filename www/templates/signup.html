@@ -1,5 +1,5 @@
 <ion-view view-title="用户注册">
-  <ion-header-bar class="bar-energized">
+  <ion-header-bar class="bar-positive">
     <h1 class="title">用户注册</h1>
   </ion-header-bar>
 
@@ -32,7 +32,7 @@
           ng-model="user.confirpwd" ng-required="true" ng-pattern="/[a-zA-Z0-9]{6,16}/" pw-check="password">
         </label>
         <label class="item">
-          <button class="button button-block button-energized" type="submit"
+          <button class="button button-block button-positive" type="submit"
           ng-disabled="signupForm.$invalid">创建帐户</button>
         </label>
       </div>
@@ -44,7 +44,7 @@
         用户登录</a>
       </div>
       <div class="col">
-        <a class="button button-clear button-energized" style="float: right;" ui-sref="forgetpwd">忘记密码?</a>
+        <a class="button button-clear button-positive" style="float: right;" ui-sref="forgetpwd">忘记密码?</a>
       </div>
     </div>
   </ion-content>

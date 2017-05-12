@@ -44,29 +44,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
     share: 'share',
     wish: 'wishlist'
   })
-  .value('baseUrl', 'http://139.199.111.41:3000/')
+  .value('baseUrl', 'http://123.206.124.111:3000/')
 
-.run(['$ionicPlatform', '$rootScope', '$ionicLoading', '$state', '$ionicPopup',
-  function($ionicPlatform, $rootScope, $ionicLoading, $state, $ionicPopup) {
-    //监听路由事件 
-    $rootScope.$on('$stateChangeStart',
-      function(event, toState, toParams, fromState, fromParams) {
-        var noLogin = ["signin", "signup", "forgetpwd"];
-
-        if (noLogin.indexOf(toState.name) < 0 &&
-          !localStorage.getItem('userid')) {
-          event.preventDefault();
-          $ionicPopup.alert({
-            title: "提示",
-            template: "请先登录！",
-            okText: "确定"
-          }).then(function() {
-            $state.go("signin");
-          })
-        }
-      })
+.run(['$ionicPlatform', '$rootScope', '$ionicLoading',
+  function($ionicPlatform, $rootScope, $ionicLoading) {
 
     $ionicPlatform.ready(function() {
+      setTimeout(function() {
+        navigator.splashscreen.hide();
+      }, 1000);
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);

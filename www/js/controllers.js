@@ -1,6 +1,10 @@
 angular.module('starter.controllers', [])
   .controller('SigninCtrl', ['$rootScope', '$scope', '$location', '$timeout', 'PopupSer', 'LoginSer',
     function($rootScope, $scope, $location, $timeout, PopupSer, LoginSer) {
+      if (localStorage.getItem('userid')) {
+        $location.path('/app/first');
+      }
+
 
       $scope.user = {
         name: localStorage.getItem('username') || '',
@@ -60,8 +64,8 @@ angular.module('starter.controllers', [])
       };
     }
   ])
-  .controller('AppCtrl', ['$scope', '$ionicModal', '$timeout', function($scope, $ionicModal, $timeout) {
-    //
+  .controller('HomeCtrl', ['$scope', function($scope) {
+
   }])
   .controller('PayCtrl', ['$scope', '$ionicLoading', '$location', 'Const', 'PopupSer', 'CommonSer',
     function($scope, $ionicLoading, $location, Const, PopupSer, CommonSer) {

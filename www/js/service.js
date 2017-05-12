@@ -117,7 +117,7 @@ angular.module("service", [])
 			$ionicPopup.alert({
 				title: '请求错误',
 				template: err,
-				okText: '确认'
+				okText: '确定'
 			});
 		}
 		factory.alert = function(msg) {

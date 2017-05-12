@@ -18,23 +18,32 @@ angular.module('configRouter', [])
 		$stateProvider
 			.state('signin', {
 				url: '/signin',
-				templateUrl: 'templates/signin.html'
+				templateUrl: 'templates/signin.html',
+				controller: 'SigninCtrl',
+				data: {
+					isPublic: true
+				},
 			})
 			.state('signup', {
 				url: '/signup',
 				templateUrl: 'templates/signup.html',
-				controller: 'SignupCtrl'
+				controller: 'SignupCtrl',
+				data: {
+					isPublic: true
+				}
 			})
 			.state('forgetpwd', {
 				url: '/forgetpwd',
 				templateUrl: 'templates/forgetpwd.html',
-				controller: 'ForgetpwdCtrl'
+				controller: 'ForgetpwdCtrl',
+				data: {
+					isPublic: true
+				}
 			})
 			.state('app', {
 				url: '/app',
 				abstract: true,
-				templateUrl: 'templates/menu.html',
-				controller: 'AppCtrl'
+				templateUrl: 'templates/menu.html'
 			})
 			.state('app.first', {
 				url: '/first',
@@ -284,6 +293,5 @@ angular.module('configRouter', [])
 					}
 				}
 			});
-		// if none of the above states are matched, use this as the fallback
-		$urlRouterProvider.otherwise('/app/first');
+		$urlRouterProvider.otherwise('/signin');
 	});
