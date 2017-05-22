@@ -369,7 +369,6 @@ angular.module("service", [])
 		}
 	])
 	.factory('sessionInteceptor', [function() {
-
 		var sessionInjector = {
 			request: function(config) {
 				var token = localStorage.getItem('userid');

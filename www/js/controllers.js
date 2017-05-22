@@ -103,6 +103,7 @@ angular.module('starter.controllers', [])
 
       $scope.search = function(keyword) {
         $scope.keyword = keyword;
+        $scope.items = [];
         $scope.loadData();
       }
 
@@ -220,6 +221,7 @@ angular.module('starter.controllers', [])
 
       $scope.search = function(keyword) {
         $scope.keyword = keyword;
+        $scope.items = [];
         $scope.loadData();
       }
 
@@ -315,6 +317,7 @@ angular.module('starter.controllers', [])
 
       $scope.search = function(keyword) {
         $scope.keyword = keyword;
+        $scope.items = [];
         $scope.loadData();
       }
 
@@ -430,6 +433,7 @@ angular.module('starter.controllers', [])
 
       $scope.search = function(keyword) {
         $scope.keyword = keyword;
+        $scope.items = [];
         $scope.loadData();
       }
 
@@ -526,6 +530,7 @@ angular.module('starter.controllers', [])
 
       $scope.search = function(keyword) {
         $scope.keyword = keyword;
+        $scope.items = [];
         $scope.loadData();
       }
 
@@ -659,6 +664,7 @@ angular.module('starter.controllers', [])
 
       $scope.search = function(keyword) {
         $scope.keyword = keyword;
+        $scope.items = [];
         $scope.loadData();
       }
 

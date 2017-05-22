@@ -24,8 +24,8 @@
 			        </label>
 			        <label class="item item-input item-stacked-label">
 			          <span class="input-label">价格</span>
-			          <input type="number" placeholder="价格" ng-model="payment.price"
-			          ng-required="true"  min="0.1">
+			          <input type="number" ng-model="payment.price"
+			          ng-required="true"  min="0.1" ng-maxlength="9" placeholder="长度不超过9位">
 			        </label>
 			        <label class="item item-input item-stacked-label">
 			        	<span class="input-label">备注</span>
@@ -65,8 +65,8 @@
 			        </label>
 			        <label class="item item-input item-stacked-label">
 			          <span class="input-label">价格</span>
-			          <input type="number" placeholder="价格" ng-model="payment1.price"
-			          ng-required="true" ng-pattern="/^\d+(\.\d+)?$/" min="0.1">
+			          <input type="number"  ng-model="payment1.price"
+			          ng-required="true" ng-pattern="/^\d+(\.\d+)?$/" min="0.1" ng-maxlength="9" placeholder="长度不超过9位">
 			        </label>
 			        <label class="item item-input item-stacked-label">
 			        	<span class="input-label">备注</span>

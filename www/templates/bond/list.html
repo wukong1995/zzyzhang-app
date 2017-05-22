@@ -29,7 +29,7 @@
         <img ng-src="img/zhuan.png" ng-if="item.income >= 0">
         <img ng-src="img/pei.png" ng-if="item.income < 0">
         <h2>{{ item.name }}</h2>
-        <p>金额：{{item.price}}</p>
+        <p>金额：{{item.income}}</p>
 
         <ion-option-button class="button-calm"
                            ng-click="onItemDelete(item)">

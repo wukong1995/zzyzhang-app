@@ -1,7 +1,48 @@
 <ion-view view-title="首页">
   <ion-content overflow-scroll="false" ng-controller="HomeCtrl">
-		<p>待添加功能</p>
-		
-  </ion-content>
+	  <div>
+	  	<img class="full-image" ng-src="img/timg1.jpg">
+	  </div>
+		<div class="row">
+			<div class="col">
+				 <a class="full-image" ui-sref="app.pay">
+	        <img class="half-image" ng-src="img/payment.png">
+	        <p>收支管理</p>
+	      </a>
+			</div>
+			<div class="col">
+				 <a class="full-image" ui-sref="app.assets">
+	        <img class="half-image" ng-src="img/assets.png">
+	        <p>资产管理</p>
+	      </a>
+			</div>
+			<div class="col">
+				 <a class="full-image" ui-sref="app.bond">
+	        <img class="half-image" ng-src="img/bond.png">
+	        <p>债券管理</p>
+	      </a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				 <a class="full-image" ui-sref="app.share">
+	        <img class="half-image" ng-src="img/share.png">
+	        <p>股票管理</p>
+	      </a>
+			</div>
+			<div class="col">
+				 <a class="full-image" ui-sref="app.borrow">
+	        <img class="half-image" ng-src="img/borrow.png">
+	        <p>借贷管理</p>
+	      </a>
+			</div>
+			<div class="col">
+				 <a class="full-image" ui-sref="app.wish">
+	        <img class="half-image" ng-src="img/wish.png">
+	        <p>心愿单</p>
+	      </a>
+			</div>
+		</div>
+
   </ion-content>
 </ion-view>

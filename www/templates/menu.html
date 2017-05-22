@@ -16,7 +16,7 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-content scroll="true" overflow-scroll="true">
+    <ion-content scroll="true" overflow-scroll="false">
       <ion-list>
         <ion-item class="item-icon-left" menu-close ui-sref="app.user" id="user-list">
           <img ng-src="img/user.png" >
@@ -25,33 +25,8 @@
           <i class="icon ion-home borrc"></i>
           用户首页
         </ion-item>
-        <ion-item class="item-icon-left" menu-close ui-sref="app.pay">
-          <i id="payc" class="icon ion-document-text"></i>
-          收支管理
-        </ion-item>
-        <ion-item class="item-icon-left" menu-close ui-sref="app.assets">
-          <i id="assetc" class="icon ion-social-yen"></i>
-          资产管理
-        </ion-item>
-        <ion-item class="item-icon-left" menu-close ui-sref="app.bond">
-          <i id="bondc" class="icon ion-social-usd"></i>
-          债券管理
-        </ion-item>
-        <ion-item class="item-icon-left" menu-close ui-sref="app.share">
-          <i id="sharec" class="icon ion-arrow-graph-up-right"></i>
-          股票管理
-        </ion-item>
-        <ion-item class="item-icon-left" menu-close ui-sref="app.borrow">
-          <i class="icon ion-card borrc"></i>
-          借贷管理
-        </ion-item>
-        <ion-item class="item-icon-left" menu-close ui-sref="app.wish">
-          <i id="wishc" class="icon ion-heart"></i>
-          心愿单
-        </ion-item>
-      </ion-list>
-      <ion-list>
-         <ion-item menu-close ui-sref="app.setting">
+        <ion-item class="item-icon-left" menu-close ui-sref="app.setting">
+          <i class="icon ion-gear-b"></i>
           相关设置
         </ion-item>
       </ion-list>

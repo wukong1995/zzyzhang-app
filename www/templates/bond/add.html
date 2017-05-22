@@ -18,13 +18,13 @@
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">价格</span>
-          <input type="number" placeholder="价格" ng-model="bond.price"
-          ng-required="true"  >
+          <input type="number"  ng-model="bond.price"
+          ng-required="true" ng-maxlength="9" placeholder="长度不超过9位" >
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">收益率</span>
           <input type="text" placeholder="收益率" ng-model="bond.yield"
-          ng-required="true" ng-pattern="/^(\-)?\d+(\.\d+)?$/" >
+          ng-required="true" ng-pattern="/^(\-)?\d+(\.\d+)?$/" ng-maxlength="9" placeholder="长度不超过9位" >
         </label>
         <label class="item item-input item-stacked-label">
         	<span class="input-label">备注</span>

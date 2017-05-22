@@ -9,14 +9,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
         return str.join("&");
       }
       $httpProvider.defaults.headers.post = {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        //添加拦截器  
+      $httpProvider.interceptors.push('sessionInteceptor');
       // 为http 增加loading效果
       $httpProvider.interceptors.push('loadingInteceptor');
-
-      //添加拦截器  
-      $httpProvider.interceptors.push('sessionInteceptor');
 
       var datePickerObj = {
         inputDate: new Date(),
@@ -44,7 +42,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
     share: 'share',
     wish: 'wishlist'
   })
-  .value('baseUrl', 'http://123.206.124.111:3000/')
+  .value('baseUrl', 'http://139.199.111.41:3000/')
 
 .run(['$ionicPlatform', '$rootScope', '$ionicLoading',
   function($ionicPlatform, $rootScope, $ionicLoading) {
@@ -56,7 +54,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
-
       }
       if (window.StatusBar) {
         StatusBar.styleDefault();
