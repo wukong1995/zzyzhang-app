@@ -6,38 +6,38 @@
   	<div class="record">
 		  <div class="list">
 			  <div class="item">
-			    <h1 class="center">{{bond.income}}</h1>
+			    <h1 class="center">{{bond.income || '未知'}}</h1>
 			  </div>
 
 			  <div class="item">
 		      名字
 		      <span class="item-value">
-		        {{bond.name}}
+		        {{bond.name || '未知'}}
 		      </span>
 		    </div>
 
 		    <div class="item">
 		      代码
 		      <span class="item-value">
-		        {{bond.code}}
+		        {{bond.code || '未知'}}
 		      </span>
 		    </div>
 		    <div class="item">
 		      买入价格
 		      <span class="item-value">
-		        {{bond.purchase}}
+		        {{bond.purchase || '未知'}}
 		      </span>
 		    </div>
 		    <div class="item">
 		      收益率
 		      <span class="item-value">
-		        {{bond.yield}}
+		        {{bond.yield || '未知'}}
 		      </span>
 		    </div>
 		    <div class="item">
 		      收益
 		      <span class="item-value">
-		        {{bond.income}}
+		        {{bond.income|| '未知'}}
 		      </span>
 		    </div>
 				<label class="item item-input item-stacked-label">

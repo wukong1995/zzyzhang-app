@@ -6,19 +6,19 @@
   	<div class="record">
 		  <div class="list">
 			  <div class="item">
-			    <h1 class="center">{{borrow.type == 0 ? '+' : '-'}}{{borrow.price}}</h1>
+			    <h1 class="center">{{borrow.type == 0 ? '+' : '-'}}{{borrow.price || '未知'}}</h1>
 			  </div>
 
 			  <div class="item">
 		      对方名字
 		      <span class="item-value">
-		        {{borrow.other}}
+		        {{borrow.other || '未知'}}
 		      </span>
 		    </div>
 		    <div class="item">
 		      对方电话
 		      <span class="item-value">
-		        {{borrow.telphone}}
+		        {{borrow.telphone || '未知'}}
 		      </span>
 		    </div>
 		     <div class="item">

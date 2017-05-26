@@ -8,8 +8,8 @@
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">名字</span>
-          <input type="text" placeholder="名字" ng-model="bond.name"
-          ng-minlength="1" ng-maxlength="20" ng-required="true">
+          <input type="text" placeholder="至少两位" ng-model="bond.name"
+          ng-minlength="1" ng-maxlength="32" ng-required="true">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">代码</span>
@@ -18,13 +18,15 @@
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">价格</span>
-          <input type="number"  ng-model="bond.price"
-          ng-required="true" ng-maxlength="9" placeholder="长度不超过9位" >
+          <input type="number" ng-model="bond.price"
+          ng-required="true" placeholder="请输入..."
+          ng-pattern="/^(([0-9]+[\.]?[0-9]+)|[1-9])$/" min="0" max="100000000">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">收益率</span>
           <input type="text" placeholder="收益率" ng-model="bond.yield"
-          ng-required="true" ng-pattern="/^(\-)?\d+(\.\d+)?$/" ng-maxlength="9" placeholder="长度不超过9位" >
+          ng-required="true" placeholder="请输入..."
+          ng-pattern="/^(-)?(([0-9]+[\.]?[0-9]+)|[1-9])$/" min="0" max="100000000">
         </label>
         <label class="item item-input item-stacked-label">
         	<span class="input-label">备注</span>

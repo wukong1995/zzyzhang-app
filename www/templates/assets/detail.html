@@ -6,19 +6,19 @@
   	<div class="record">
 		  <div class="list">
 			  <div class="item">
-			    <h1 class="center">{{assets.price}}</h1>
+			    <h1 class="center">{{assets.price || '未知'}}</h1>
 			  </div>
 
 			  <div class="item">
 		      名字
 		      <span class="item-value">
-		        {{assets.name}}
+		        {{assets.name || '未知'}}
 		      </span>
 		    </div>
 		     <div class="item">
 		      类型
 		      <span class="item-value">
-		        {{assets.type}}
+		        {{assets.type || '未知'}}
 		      </span>
 		    </div>
 				<label class="item item-input item-stacked-label">

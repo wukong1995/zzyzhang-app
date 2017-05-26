@@ -8,8 +8,8 @@
       <div class="list">
         <label class="item item-input item-stacked-label">
           <span class="input-label">名字</span>
-          <input type="text" placeholder="名字" ng-model="assets.name"
-          ng-minlength="1" ng-maxlength="20" ng-required="true">
+          <input type="text" placeholder="至少两位" ng-model="assets.name"
+          ng-minlength="1" ng-maxlength="32" ng-required="true">
         </label>
         <label class="item item-input item-select">
           <span class="input-label">类型</span>
@@ -25,7 +25,8 @@
         <label class="item item-input item-stacked-label">
           <span class="input-label">价格</span>
           <input type="number"  ng-model="assets.price"
-          ng-required="true" min="0.1" ng-maxlength="9" placeholder="长度不超过9位">
+          ng-required="true" placeholder="请输入..."
+          ng-pattern="/^(([0-9]+[\.]?[0-9]+)|[1-9])$/" min="0" max="100000000">
         </label>
         <label class="item item-input item-stacked-label">
         	<span class="input-label">备注</span>

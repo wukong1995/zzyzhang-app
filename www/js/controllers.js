@@ -1,11 +1,6 @@
 angular.module('starter.controllers', [])
   .controller('SigninCtrl', ['$rootScope', '$scope', '$location', '$timeout', 'PopupSer', 'LoginSer',
     function($rootScope, $scope, $location, $timeout, PopupSer, LoginSer) {
-      if (localStorage.getItem('userid')) {
-        $location.path('/app/first');
-      }
-
-
       $scope.user = {
         name: localStorage.getItem('username') || '',
         password: localStorage.getItem('password') || ''
@@ -64,9 +59,26 @@ angular.module('starter.controllers', [])
       };
     }
   ])
-  .controller('HomeCtrl', ['$scope', function($scope) {
-
-  }])
+  .controller('HomeCtrl', ['$scope', '$location', 'LoginSer', 'PopupSer',
+    function($scope, $location, LoginSer, PopupSer) {
+      if (!localStorage.getItem('userid')) {
+        $location.path('/signin');
+        return;
+      }
+      this.user = {
+        name: localStorage.getItem('username') || '',
+        password: localStorage.getItem('password') || ''
+      }
+      LoginSer.signin(this.user).then(function(res) {
+        if (res.success == 0) {
+          PopupSer.show("账户已过期");
+          $location.path('/signin');
+        }
+      }, function(err) {
+        PopupSer.alertErr(err);
+      });
+    }
+  ])
   .controller('PayCtrl', ['$scope', '$ionicLoading', '$location', 'Const', 'PopupSer', 'CommonSer',
     function($scope, $ionicLoading, $location, Const, PopupSer, CommonSer) {
       // 初始化参数
@@ -753,9 +765,11 @@ angular.module('starter.controllers', [])
   ])
   .controller('WishEditCtrl', ['$scope', '$location', '$stateParams', 'PopupSer', 'Const', 'CommonSer', 'WishSer',
     function($scope, $location, $stateParams, PopupSer, Const, CommonSer, WishSer) {
-      $scope.id = $stateParams.id;
+      $scope.wish = {
+        _id: $stateParams.id
+      };
 
-      CommonSer.detail(Const.wish, $scope.id)
+      CommonSer.detail(Const.wish, $scope.wish._id)
         .then(function(res) {
           if (res.success == 1) {
             $scope.wish = res.data;

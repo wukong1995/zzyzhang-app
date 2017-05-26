@@ -293,5 +293,5 @@ angular.module('configRouter', [])
 					}
 				}
 			});
-		$urlRouterProvider.otherwise('/signin');
+		$urlRouterProvider.otherwise('/app/first');
 	});

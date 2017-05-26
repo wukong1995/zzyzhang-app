@@ -16,3 +16,4 @@
 .row .col a.full-image {color: #444;display: inline-block;text-align: center;text-decoration: none;}
 .row .col p {line-height: normal;}
 .row .col:first-child {border-left: none;}
+#comment {height: 150px;}

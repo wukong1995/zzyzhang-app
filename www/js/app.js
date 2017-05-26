@@ -42,7 +42,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
     share: 'share',
     wish: 'wishlist'
   })
-  .value('baseUrl', 'http://139.199.111.41:3000/')
+  .value('baseUrl', 'http://123.206.124.111:3000/')
+  // .value('baseUrl', 'http://192.168.1.108:3000/')
 
 .run(['$ionicPlatform', '$rootScope', '$ionicLoading',
   function($ionicPlatform, $rootScope, $ionicLoading) {
@@ -59,6 +60,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
         StatusBar.styleDefault();
       }
     });
+
     $rootScope.$on('loading:show', function() {
       $ionicLoading.show({
         template: '加载中'

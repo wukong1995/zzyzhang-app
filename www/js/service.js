@@ -299,18 +299,22 @@ angular.module("service", [])
 	.factory('WishSer', ['$http', '$q', 'baseUrl', function($http, $q, baseUrl) {
 		var factory = {};
 		factory.save = function(wish) {
-
 			var deferred = $q.defer();
-			$http.post(baseUrl + 'wishlist/savemo', {
+			var param = {
 				name: wish.name,
 				product_type: wish.product_type,
 				price: wish.price,
 				remark: wish.remark
-			}).success(function(data) {
-				deferred.resolve(data);
-			}).error(function(err) {
-				deferred.reject(err);
-			});
+			};
+			if (wish._id) {
+				param._id = wish._id;
+			}
+			$http.post(baseUrl + 'wishlist/savemo', param)
+				.success(function(data) {
+					deferred.resolve(data);
+				}).error(function(err) {
+					deferred.reject(err);
+				});
 			return deferred.promise;
 		}
 		factory.buy = function(id) {
