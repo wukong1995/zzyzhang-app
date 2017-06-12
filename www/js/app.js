@@ -42,8 +42,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
     share: 'share',
     wish: 'wishlist'
   })
-  .value('baseUrl', 'http://123.206.124.111:3000/')
-  // .value('baseUrl', 'http://192.168.1.108:3000/')
+  .value('baseUrl', 'http://127.0.0.1:3000/')
+  // .value('baseUrl', 'http://zzyzhang.dival.cn:3000/')
 
 .run(['$ionicPlatform', '$rootScope', '$ionicLoading',
   function($ionicPlatform, $rootScope, $ionicLoading) {

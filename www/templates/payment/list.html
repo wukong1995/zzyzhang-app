@@ -4,7 +4,7 @@
     <a class="button button-clear button-icon ion-plus-round" ui-sref="app.pay.add"></a>
   </ion-nav-buttons>
 
-  <ion-content overflow-scroll="false">
+  <ion-content  scroll="true" overflow-scroll="false">
     <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
     <div class="bar bar-header item-input-inset">
       <label class="item-input-wrapper">
@@ -14,10 +14,6 @@
     </div>
 
     <ion-list>
-<!-- 			<ion-item class="item-divider">
-		    2017-01-12
-		    <span class="item-note">3,555</span>
-		  </ion-item> -->
       <ion-item class="item-avatar" ng-repeat="item in items track by $index" 
                 item="item"
                 ui-sref="app.pay.detail({id:item._id})" class="item-remove-animate">
@@ -34,6 +30,6 @@
       </ion-item>
     </ion-list>
 
-    <ion-infinite-scroll  on-infinite="loadData()"  ng-if="moredata"></ion-infinite-scroll>
+    <ion-infinite-scroll on-infinite="loadData()"  ng-if="moredata"></ion-infinite-scroll>
   </ion-content>
 </ion-view>

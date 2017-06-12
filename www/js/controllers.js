@@ -90,33 +90,45 @@ angular.module('starter.controllers', [])
         $scope.items = [];
         $scope.moredata = false;
       }
+      self.reset();
 
-      $scope.loadData = function() {
+      $scope.init = function() {
+        console.log("loading")
+        console.log("$scope.moredata:", $scope.moredata)
+
         CommonSer.getList(Const.payment, $scope.keyword, self.page, self.limit)
           .then(function(res) {
-            $scope.page = res.page;
+            self.page = res.page;
+            self.start = self.page * self.limit;
             $scope.items.push.apply($scope.items, res.data);
-            if ($scope.page * self.limit > res.totalCount) {
+            if (self.page * self.limit > res.totalCount) {
               $scope.moredata = false;
+            } else {
+              $scope.moredata = true;
             }
           }, function(err) {
             PopupSer.alertErr(err);
           });
       };
 
-      self.reset();
-      $scope.loadData();
+      $scope.init();
+
+      $scope.loadData = function() {
+        console.log("more")
+        $scope.init();
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      }
 
       $scope.doRefresh = function() {
         self.reset();
-        $scope.loadData();
+        $scope.init();
         $scope.$broadcast('scroll.refreshComplete');
       }
 
       $scope.search = function(keyword) {
         $scope.keyword = keyword;
         $scope.items = [];
-        $scope.loadData();
+        $scope.init();
       }
 
       $scope.onItemDelete = function(item) {
